@@ -28,7 +28,8 @@ public class DataBaseCreator {
 			stmt.execute(sql);		
 			sql = ""
 				+ "create table LostKidsInfo("
-				+ "kidId int primary key,"
+				+ "kidID int auto_increment primary key,"
+				+ "userID int not null,"
 				+ "kidName varchar(10) not null,"
 				+ "kidAge int not null,"
 				+ "lostTime varchar(20) not null,"
@@ -37,7 +38,7 @@ public class DataBaseCreator {
 				+ "clothes_down varchar(40) not null,"
 				+ "clothes_shoes varchar(40) not null,"
 				+ "addedInfo varchar(100) not null,"
-				+ "connectInfo varchar(40) not null,"
+				+ "contectInfo varchar(40) not null,"
 				+ "appearanceDescription varchar(100) not null"
 				+ ")";
 			stmt.execute(sql);
@@ -46,7 +47,7 @@ public class DataBaseCreator {
 			stmt.execute(sql);
 			sql = ""
 				+"create table kidsPhotoes("
-				+ "photoId int primary key,"
+				+ "photoID int auto_increment primary key,"
 				+ "kidId int not null,"
 				+ "photoPath varchar(60) not null"
 				+ ")";
@@ -56,7 +57,7 @@ public class DataBaseCreator {
 			stmt.execute(sql);
 			sql = ""
 				+ "create table usersInfo("
-				+ "userID int primary key,"
+				+ "userID int auto_increment primary key,"
 				+ "nickName varchar(20) not null,"
 				+ "email varchar(40) not null,"
 				+ "password varchar(100) not null,"
