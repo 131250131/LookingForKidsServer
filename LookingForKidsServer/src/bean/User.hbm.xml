@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="bean.User" table="usersinfo" catalog="lookingforkidsdb">
+		<id name="userID" column="userID" type="integer" length="11">
+			<generator class="identity" />
+		</id>
+		<property name="nickName" column="nickName" type="string" length="20" not-null="true" />
+		<property name="email" column="email" type="string" length="40" not-null="true" />
+		<property name="password" column="password" type="string" length="100" not-null="true" />
+		<property name="phonenumber" column="phonenumber" type="string" length="20" />
+		<property name="authority" column="authority" type="integer" length="11" not-null="true" />
+	</class>
+</hibernate-mapping>

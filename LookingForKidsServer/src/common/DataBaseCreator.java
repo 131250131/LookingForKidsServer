@@ -38,7 +38,7 @@ public class DataBaseCreator {
 				+ "clothes_down varchar(40) not null,"
 				+ "clothes_shoes varchar(40) not null,"
 				+ "addedInfo varchar(100) not null,"
-				+ "contectInfo varchar(40) not null,"
+				+ "contactInfo varchar(40) not null,"
 				+ "appearanceDescription varchar(100) not null"
 				+ ")";
 			stmt.execute(sql);
@@ -48,7 +48,7 @@ public class DataBaseCreator {
 			sql = ""
 				+"create table kidsPhotoes("
 				+ "photoID int auto_increment primary key,"
-				+ "kidId int not null,"
+				+ "kidID int not null,"
 				+ "photoPath varchar(60) not null"
 				+ ")";
 			stmt.execute(sql);
