@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class DataBaseCreator {
-	String url="jdbc:mysql://localhost/u_csc";
+	String url="jdbc:mysql://localhost";
 	String user="root";
 	String password="hongmao";
 	String sql="";
