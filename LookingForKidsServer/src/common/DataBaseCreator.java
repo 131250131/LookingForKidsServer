@@ -46,7 +46,7 @@ public class DataBaseCreator {
 			sql = "use LookingForKidsDB;";
 			stmt.execute(sql);
 			sql = ""
-				+"create table kidsPhotoes("
+				+"create table kidsPhotos("
 				+ "photoID int auto_increment primary key,"
 				+ "kidID int not null,"
 				+ "photoPath varchar(60) not null"
