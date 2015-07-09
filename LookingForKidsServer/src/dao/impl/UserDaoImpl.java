@@ -4,14 +4,15 @@ import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
-import dao.BaseDao;
+import bean.User;
+import dao.UserDao;
 
-public class BaseDaoImpl extends HibernateDaoSupport implements BaseDao {
+public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
-	public void saveObject(Object obj) throws HibernateException {
+	public void register(User user) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
-		hibernateTemplate.save(obj);
+		hibernateTemplate.save(user);
 	}
 
 }

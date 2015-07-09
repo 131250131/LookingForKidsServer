@@ -9,7 +9,7 @@
 	<s:form action="register">
 		<s:textfield name="userRegisterForm.nickName" label="昵称" />
 		<s:textfield name="userRegisterForm.email" label="电子邮箱" />
-		<s:password name="userForm.password" label="密码"></s:password>
+		<s:password name="userRegisterForm.password" label="密码"></s:password>
 		<s:textfield name="userRegisterForm.phonenumber" label="手机号码" />
 		<s:submit value="注册"></s:submit>
 	</s:form>
