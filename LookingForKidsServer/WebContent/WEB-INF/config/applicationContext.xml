@@ -76,5 +76,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<ref bean="userManager" />
 	</property>
 </bean>
+ 
+<!-- 用户登录的Action -->
+<bean id="login" class="action.LoginAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
 <!-- more bean definitions go here -->
 </beans>

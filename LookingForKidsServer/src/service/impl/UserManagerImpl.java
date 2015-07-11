@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.springframework.beans.BeanUtils;
 
@@ -24,6 +26,16 @@ public class UserManagerImpl implements UserManager {
 		User user = new User();
 		BeanUtils.copyProperties(userRegisterForm, user);
 		userDao.register(user);
+	}
+
+	@Override
+	public List<User> getUserByEmail(String email) throws HibernateException {
+		return userDao.getUserByEmail(email);
+	}
+
+	@Override
+	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException {
+		return userDao.getUserByPhoneNumber(phoneNumber);
 	}
 
 }
