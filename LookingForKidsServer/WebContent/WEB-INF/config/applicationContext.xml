@@ -42,6 +42,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<property name="mappingResources">
 		<list>
 			<value>bean/User.hbm.xml</value>
+			<value>bean/Kid.hbm.xml</value>
+			<value>bean/KidPhoto.hbm.xml</value>
 		</list>
 	</property>
 	<property name="hibernateProperties">
@@ -63,7 +65,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	</property>
 </bean>
       
-<!--用户注册业务逻辑类 -->
+<!--用户业务逻辑类 -->
 <bean id="userManager" class="service.impl.UserManagerImpl">
 	<property name="userDao">
 		<ref bean="userDao" />
@@ -72,6 +74,13 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
       
 <!-- 用户注册的Action -->
 <bean id="register" class="action.RegisterAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
+      
+<!-- 发布信息的Action -->
+<bean id="publish" class="action.PublishAction">
 	<property name="userManager">
 		<ref bean="userManager" />
 	</property>

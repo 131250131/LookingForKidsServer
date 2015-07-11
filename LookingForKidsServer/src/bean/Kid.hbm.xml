@@ -6,7 +6,7 @@
 		<id column="kidID" name="kidID" type="integer" length="11">
 			<generator class="identity"/>
 		</id> 
-		<property name ="userID" column="userID" type="string"/>
+		<property name ="userID" column="userID" type="integer"/>
 		<property name ="kidName" column="kidName" type="string"/>
 		<property name ="kidAge" column="kidAge" type="integer"/>
 		<property name ="lostTime" column="lostTime" type="string"/>
@@ -18,9 +18,9 @@
 		<property name ="contactInfo" column="contactInfo" type="string"/>
 		<property name ="appearanceDescription" column="appearanceDescription" type="string"/>
 		<!-- 一对多双向关系映射，单的一方的配置 -->
-		<set name="kidPhotos" table="kidsPhotos" cascade="all" inverse="true" lazy="false" sort="natural ">
+		<!-- set name="kidPhotos" table="kidsPhotos" cascade="all" inverse="true" lazy="false" sort="natural ">
 			<key column="kidID"/>
 			<one-to-many class="bean.KidPhoto"/>
-		</set>
+		</set -->
 		</class>
 </hibernate-mapping>

@@ -9,5 +9,10 @@
 			<result name="success">/user/register/success.jsp</result>
 			<result name="error">/user/register/fail.jsp</result>
 		</action>
+		<action name="publish" class="action.PublishAction">
+			<result name="input">/message/publish/publish.jsp</result>
+			<result name="success">/message/publish/success.jsp</result>
+			<result name="fail">/message/publish/fail.jsp</result>
+		</action>
 	</package>
 </struts>

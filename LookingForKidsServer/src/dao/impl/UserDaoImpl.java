@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
+import bean.Kid;
 import bean.User;
 import dao.UserDao;
 
@@ -13,6 +14,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(user);
+	}
+
+	public void publish(Kid kid) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		hibernateTemplate.setCheckWriteOperations(false);
+		hibernateTemplate.save(kid);
 	}
 
 }
