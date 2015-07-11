@@ -81,6 +81,13 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
       
 <!-- 发布信息的Action -->
 <bean id="publish" class="action.PublishAction">
+ 	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
+
+<!-- 用户登录的Action -->
+<bean id="login" class="action.LoginAction">
 	<property name="userManager">
 		<ref bean="userManager" />
 	</property>
