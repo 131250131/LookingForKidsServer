@@ -11,7 +11,10 @@
 		<s:password name="userLoginForm.password" label="密码"></s:password>
 		<s:submit value="登录"></s:submit>
 	</s:form>
-  
+	
+	<s:a href="/LookingForKidsServer/user/register/register.jsp">
+	注册用户
+	</s:a>
 
 </body>
 </html>
