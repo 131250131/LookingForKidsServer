@@ -7,6 +7,7 @@
 </head>
 <body>
 	<s:form action="publish" enctype="multipart/form-data">
+		<s:textfield name="kidPublishForm.kidID" label="孩子ID" />
 		<s:textfield name="kidPublishForm.userID" label="用户ID" />
 		<s:textfield name="kidPublishForm.kidName" label="姓名" />
 		<s:textfield name="kidPublishForm.kidAge" label="年龄" />

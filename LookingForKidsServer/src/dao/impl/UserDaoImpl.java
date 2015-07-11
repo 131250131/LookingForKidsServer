@@ -7,6 +7,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import bean.Kid;
+import bean.KidPhoto;
 import bean.User;
 import dao.UserDao;
 
@@ -22,6 +23,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(kid);
+		for(KidPhoto kidPhoto: kid.getKidPhotos()){
+			hibernateTemplate.save(kidPhoto);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -1,7 +1,13 @@
 package bean;
 
-public class User {
+import java.io.Serializable;
 
+public class User implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8252822116599284925L;
 	private int userID;
 	private String nickName;
 	private String email;

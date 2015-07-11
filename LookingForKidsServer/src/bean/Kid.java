@@ -1,9 +1,14 @@
 package bean;
 
+import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
-public class Kid {
-
+public class Kid implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1962134029702820581L;
 	private int kidID;
 	private int userID;
 	private String kidName;
@@ -16,7 +21,10 @@ public class Kid {
 	private String addedInfo;
 	private String contactInfo;
 	private String appearanceDescription;
-	private Set<KidPhoto> kidPhotos;
+	private Set<KidPhoto> kidPhotos = new HashSet<KidPhoto>();
+	
+	public Kid(){
+	}
 	
 	public int getKidID() {
 		return kidID;

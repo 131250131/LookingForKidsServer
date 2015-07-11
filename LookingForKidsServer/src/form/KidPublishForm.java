@@ -5,6 +5,7 @@ import java.util.Set;
 import bean.KidPhoto;
 
 public class KidPublishForm {
+	private int kidID;
 	private int userID;
 	private String kidName;
 	private int kidAge;
@@ -112,5 +113,13 @@ public class KidPublishForm {
 
 	public void setKidPhotos(Set<KidPhoto> kidPhotos) {
 		this.kidPhotos = kidPhotos;
+	}
+
+	public int getKidID() {
+		return kidID;
+	}
+
+	public void setKidID(int kidID) {
+		this.kidID = kidID;
 	}
 }

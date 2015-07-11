@@ -49,7 +49,7 @@ public class DataBaseCreator {
 				+"create table kidsPhotos("
 				+ "photoID int auto_increment primary key,"
 				+ "kidID int not null,"
-				+ "photoPath varchar(60) not null"
+				+ "photoPath varchar(200) not null"
 				+ ")";
 			stmt.execute(sql);
 			System.out.println("kidsPhotoes has been created");

@@ -6,7 +6,7 @@
 		<id column="photoID" name="photoID" type="integer" length="11">
 			<generator class="identity"/>
 		</id> 
-		<property name ="kidID" column="kidID" type="string"/>
+		<property name ="kidID" column="kidID" type="integer"/>
 		<property name ="photoPath" column="photoPath" type="string"/>
 	</class>
 </hibernate-mapping>

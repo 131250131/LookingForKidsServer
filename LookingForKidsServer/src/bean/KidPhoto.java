@@ -1,10 +1,19 @@
 package bean;
 
-public class KidPhoto {
+import java.io.Serializable;
 
+public class KidPhoto implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9142331724961845444L;
 	private int photoID;
 	private int kidID;
 	private String photoPath;
+	
+	public KidPhoto(){
+	}
 	
 	public int getPhotoID() {
 		return photoID;

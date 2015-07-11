@@ -31,9 +31,9 @@ public class UserManagerImpl implements UserManager {
 	}
 
 
-	public void publish(KidPublishForm kidRegisterForm) throws HibernateException {
+	public void publish(KidPublishForm kidPublishForm) throws HibernateException {
 		Kid kid = new Kid();
-		BeanUtils.copyProperties(kidRegisterForm, kid);
+		BeanUtils.copyProperties(kidPublishForm, kid);
 		userDao.publish(kid);
 	}
 	@Override
