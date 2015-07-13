@@ -6,8 +6,10 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.BeanUtils;
 
 import bean.Kid;
+import bean.KidPhoto;
 import bean.User;
 import dao.UserDao;
+import form.KidPhotoUploadForm;
 import form.KidPublishForm;
 import form.UserRegisterForm;
 import service.UserManager;
@@ -44,6 +46,11 @@ public class UserManagerImpl implements UserManager {
 	@Override
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException {
 		return userDao.getUserByPhoneNumber(phoneNumber);
+	}
+
+	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException {
+		KidPhoto kidPhoto = kidPhotoUploadForm.getKidPhoto();
+		userDao.upload(kidPhoto);
 	}
 
 }

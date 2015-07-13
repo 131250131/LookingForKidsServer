@@ -92,5 +92,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<ref bean="userManager" />
 	</property>
 </bean>
+
+<!-- 上传图片的Action -->
+<bean id="upload" class="action.UploadAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
 <!-- more bean definitions go here -->
 </beans>
