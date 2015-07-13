@@ -1,5 +1,10 @@
 package action;
 
+
+
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.User;
@@ -31,18 +36,25 @@ public class LoginAction extends ActionSupport{
 	}
 	
 	public String execute() {
+		ActionContext actionContext = ActionContext.getContext();
+        Map<String, Object> session = actionContext.getSession();
+        
 		try {
 			if(userManager.getUserByEmail(userLoginForm.getAccount()).size()==0 && 
 					userManager.getUserByPhoneNumber(userLoginForm.getAccount()).size()==0) 
 				return ERROR;
 			else {
 				for(User user: userManager.getUserByEmail(userLoginForm.getAccount()))
-					if(user.getPassword().equals(userLoginForm.getPassword()))
+					if(user.getPassword().equals(userLoginForm.getPassword())) {
+						session.put("userID", user.getUserID());
 						return SUCCESS;
+					}
 				
 				for(User user: userManager.getUserByPhoneNumber(userLoginForm.getAccount()))
-					if(user.getPassword().equals(userLoginForm.getPassword()))
+					if(user.getPassword().equals(userLoginForm.getPassword())) {
+						session.put("userID", user.getUserID());
 						return SUCCESS;
+					}
 				return ERROR;
 				
 			}
