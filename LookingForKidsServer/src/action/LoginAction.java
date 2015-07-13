@@ -11,7 +11,7 @@ public class LoginAction extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 7330737697739867196L;
-	public static UserLoginForm userLoginForm;
+	private UserLoginForm userLoginForm;
 	private UserManager userManager;
 	
 	public UserLoginForm getUserLoginForm() {
