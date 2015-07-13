@@ -1,5 +1,8 @@
 package action;
 
+import java.util.Map;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import form.KidPublishForm;
@@ -29,7 +32,10 @@ public class PublishAction extends ActionSupport{
 	}
 
 	public String execute(){
+		ActionContext actionContext = ActionContext.getContext();
+        Map<String, Object> session = actionContext.getSession();
 		try {
+			kidPublishForm.setUserID((Integer)session.get("userID"));
 			userManager.publish(kidPublishForm);
 			return SUCCESS;
 		} catch (Exception e) {
