@@ -19,8 +19,7 @@
 		<s:textarea name="kidPublishForm.appearanceDescription" label="外貌描述" cols="17" rows="5"/>
 		<s:textarea name="kidPublishForm.addedInfo" label="附加信息" cols="17" rows="5"/>
 		<s:textfield name="kidPublishForm.contactInfo" label="联系方式" />
-		<s:file name="kidPublishForm.kidPhotos" label="照片" accepet="image/*" />
-		<s:submit value="发布"></s:submit>
+		<s:submit value="查找"></s:submit>
 	</s:form>
 </body>
 </html>

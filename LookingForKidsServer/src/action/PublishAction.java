@@ -3,8 +3,6 @@ package action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,35 +65,35 @@ public class PublishAction extends ActionSupport{
 		this.fileContentType = fileContentType;
 	}
 
+
 	public String execute(){
 		try {
-			//创建工程保存文件的路径
-			String root = ServletActionContext.getServletContext().getRealPath("/photos");
-			File folder = new File(root);
+			String savePath = ServletActionContext.getServletContext().getRealPath("/photo");
+			File folder = new File(savePath);
 			if(!folder.exists() && !folder.isDirectory())
 				folder.mkdir();
 			for(int i=0;i<file.size();i++){
-				InputStream is = new FileInputStream(file.get(i));
+				FileInputStream fis = new FileInputStream(file.get(i));
 		            
 		        //得到图片保存的位置(根据root来得到图片保存的路径在tomcat下的该工程里)
-		        File destFile = new File(root,this.getFileFileName().get(i));
+		        File destFile = new File(savePath, getFileFileName().get(i));
 		            
 		        //把图片写入到上面设置的路径里
-		        OutputStream os = new FileOutputStream(destFile);
-		        byte[] buffer = new byte[400];
+		        FileOutputStream fos = new FileOutputStream(destFile);
+		        byte[] buffer = new byte[1024];
 		        int length  = 0 ;
-		        while((length = is.read(buffer))>0){
-		            os.write(buffer, 0, length);
+		        while((length = fis.read(buffer))>0){
+		            fos.write(buffer, 0, length);
 		        }
-		        is.close();
-		        os.close();	
+		        fis.close();
+		        fos.close();	
 			}
 			Set<KidPhoto> kidPhotos = new HashSet<KidPhoto>();
 			for(int i=0;i<file.size();i++){
 				KidPhoto kidPhoto = new KidPhoto();
 				kidPhoto.setKidID(1);
 				kidPhoto.setPhotoID(1);
-				kidPhoto.setPhotoPath(root+"\\"+this.getFileFileName().get(i));
+				kidPhoto.setPhotoPath(savePath+"\\"+this.getFileFileName().get(i));
 				kidPhotos.add(kidPhoto);
 			}
 			kidPublishForm.setKidPhotos(kidPhotos);

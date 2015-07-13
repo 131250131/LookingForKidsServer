@@ -9,10 +9,22 @@
 			<result name="success">/user/register/success.jsp</result>
 			<result name="error">/user/register/fail.jsp</result>
 		</action>
+		
+	
 		<action name="publish" class="action.PublishAction">
-			<result name="input">/message/publish/publish.jsp</result>
-			<result name="success">/message/publish/success.jsp</result>
-			<result name="fail">/message/publish/fail.jsp</result>
+			<!-- fileUpload拦截器配置 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置上传文件的最大字节数 -->
+				<param name="maximumSize">10000000</param>
+				<!-- 设置上传文件的类型 -->
+				<param name="allowedTypes">
+					image/gif,image/png,image/jpeg,image/jpg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+				<result name="input">/message/publish/publish.jsp</result>
+				<result name="success">/message/publish/success.jsp</result>
+				<result name="fail">/message/publish/fail.jsp</result>
 		</action>
 		
 		<action name="login" class="action.LoginAction">
