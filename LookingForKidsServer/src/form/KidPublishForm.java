@@ -1,11 +1,6 @@
 package form;
 
-import java.util.Set;
-
-import bean.KidPhoto;
-
 public class KidPublishForm {
-	private int kidID;
 	private int userID;
 	private String kidName;
 	private int kidAge;
@@ -17,7 +12,6 @@ public class KidPublishForm {
 	private String addedInfo;
 	private String contactInfo;
 	private String appearanceDescription;
-	private Set<KidPhoto> kidPhotos;
 	
 	public String getKidName() {
 		return kidName;
@@ -107,19 +101,4 @@ public class KidPublishForm {
 		this.userID = userID;
 	}
 
-	public Set<KidPhoto> getKidPhotos() {
-		return kidPhotos;
-	}
-
-	public void setKidPhotos(Set<KidPhoto> kidPhotos) {
-		this.kidPhotos = kidPhotos;
-	}
-
-	public int getKidID() {
-		return kidID;
-	}
-
-	public void setKidID(int kidID) {
-		this.kidID = kidID;
-	}
 }

@@ -6,9 +6,7 @@
 <title>publish</title>
 </head>
 <body>
-	<s:form action="publish" enctype="multipart/form-data" method="post">
-		<s:textfield name="kidPublishForm.kidID" label="孩子ID" />
-		<s:textfield name="kidPublishForm.userID" label="用户ID" />
+	<s:form action="publish">
 		<s:textfield name="kidPublishForm.kidName" label="姓名" />
 		<s:textfield name="kidPublishForm.kidAge" label="年龄" />
 		<s:textfield name="kidPublishForm.lostTime" label="丢失时间" />
@@ -19,7 +17,6 @@
 		<s:textarea name="kidPublishForm.appearanceDescription" label="外貌描述" cols="17" rows="5"/>
 		<s:textarea name="kidPublishForm.addedInfo" label="附加信息" cols="17" rows="5"/>
 		<s:textfield name="kidPublishForm.contactInfo" label="联系方式" />
-		<s:file name="file" label="照片"></s:file>
 		<s:submit value="发布"></s:submit>
 	</s:form>
 </body>

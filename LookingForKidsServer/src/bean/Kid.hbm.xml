@@ -18,9 +18,9 @@
 		<property name ="contactInfo" column="contactInfo" type="string"/>
 		<property name ="appearanceDescription" column="appearanceDescription" type="string"/>
 		<!-- 一对多双向关系映射，单的一方的配置 -->
-		<set name="kidPhotos" table="KidsPhotos" cascade="all" inverse="false" lazy="false" sort="unsorted">
+		<!-- set name="kidPhotos" table="KidsPhotos" cascade="all" inverse="false" lazy="false" sort="unsorted">
 			<key column="kidID"/>
 			<one-to-many class="bean.KidPhoto"/>
-		</set >
+		</set -->
 		</class>
 </hibernate-mapping>

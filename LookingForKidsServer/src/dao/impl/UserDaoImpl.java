@@ -23,9 +23,6 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(kid);
-		for(KidPhoto kidPhoto: kid.getKidPhotos()){
-			hibernateTemplate.save(kidPhoto);
-		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -40,6 +37,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		return (List<User>)hibernateTemplate.find("from bean.User u where u.phonenumber=?", phoneNumber);
+	}
+
+	public void upload(KidPhoto kidPhoto) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		hibernateTemplate.setCheckWriteOperations(false);
+		hibernateTemplate.save(kidPhoto);
 	}
 
 }
