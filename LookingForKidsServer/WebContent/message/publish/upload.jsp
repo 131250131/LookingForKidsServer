@@ -8,7 +8,7 @@
 </head>
 <body>
 	<s:form action="upload" enctype="multipart/form-data" method="post">
-		<s:file name="file" label="照片"></s:file>
+		<s:file name="file" label="当前孩子的照片"></s:file>
 		<s:submit value="发布"></s:submit>
 	</s:form>
 </body>

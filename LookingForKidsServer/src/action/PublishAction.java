@@ -36,7 +36,8 @@ public class PublishAction extends ActionSupport{
         Map<String, Object> session = actionContext.getSession();
 		try {
 			kidPublishForm.setUserID((Integer)session.get("userID"));
-			userManager.publish(kidPublishForm);
+			int kidID = userManager.publish(kidPublishForm);
+			session.put("kidID", kidID);
 			return SUCCESS;
 		} catch (Exception e) {
 			e.printStackTrace();

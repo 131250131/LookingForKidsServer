@@ -19,10 +19,11 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		hibernateTemplate.save(user);
 	}
 
-	public void publish(Kid kid) throws HibernateException {
+	public int publish(Kid kid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(kid);
+		return kid.getKidID();
 	}
 	
 	@SuppressWarnings("unchecked")

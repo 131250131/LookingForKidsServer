@@ -6,7 +6,6 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.BeanUtils;
 
 import bean.Kid;
-import bean.KidPhoto;
 import bean.User;
 import dao.UserDao;
 import form.KidPhotoUploadForm;
@@ -33,10 +32,10 @@ public class UserManagerImpl implements UserManager {
 	}
 
 
-	public void publish(KidPublishForm kidPublishForm) throws HibernateException {
+	public int publish(KidPublishForm kidPublishForm) throws HibernateException {
 		Kid kid = new Kid();
 		BeanUtils.copyProperties(kidPublishForm, kid);
-		userDao.publish(kid);
+		return userDao.publish(kid);
 	}
 	@Override
 	public List<User> getUserByEmail(String email) throws HibernateException {
@@ -49,8 +48,7 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException {
-		KidPhoto kidPhoto = kidPhotoUploadForm.getKidPhoto();
-		userDao.upload(kidPhoto);
+		userDao.upload(kidPhotoUploadForm.getKidPhoto());
 	}
 
 }

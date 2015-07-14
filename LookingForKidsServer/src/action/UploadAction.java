@@ -3,9 +3,11 @@ package action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.KidPhoto;
@@ -19,7 +21,7 @@ public class UploadAction extends ActionSupport{
 	private File file;
 	private String fileFileName;
 	private String fileContentType;
-	private KidPhotoUploadForm kidPhotoUploadForm;
+	private KidPhotoUploadForm kidPhotoUploadForm = new KidPhotoUploadForm();
 	private UserManager userManager;
 	
 	public KidPhotoUploadForm getKidPhotoUploadForm() {
@@ -54,6 +56,9 @@ public class UploadAction extends ActionSupport{
 	}
 	public String execute(){
 		try {
+			ActionContext actionContext = ActionContext.getContext();
+	        Map<String, Object> session = actionContext.getSession();
+
 			String savePath = ServletActionContext.getServletContext().getRealPath("/photo");
 			File folder = new File(savePath);
 			if(!folder.exists() && !folder.isDirectory())
@@ -74,8 +79,9 @@ public class UploadAction extends ActionSupport{
 		    fos.close();	
 		    
 			KidPhoto kidPhoto = new KidPhoto();
-			kidPhoto.setKidID(kidPhotoUploadForm.getKidID());
+			kidPhoto.setKidID((int)session.get("kidID"));
 			kidPhoto.setPhotoPath(savePath+"/"+ getFileFileName());
+
 			kidPhotoUploadForm.setKidPhoto(kidPhoto);
 			userManager.upload(kidPhotoUploadForm);
 			return SUCCESS;

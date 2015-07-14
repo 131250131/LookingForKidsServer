@@ -12,7 +12,7 @@ import form.UserRegisterForm;
 public interface UserManager {
 
 	public void register(UserRegisterForm userRegisterForm) throws HibernateException;
-	public void publish(KidPublishForm kidRegisterForm) throws HibernateException;
+	public int publish(KidPublishForm kidRegisterForm) throws HibernateException;
 	public List<User> getUserByEmail(String email) throws HibernateException;
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException;

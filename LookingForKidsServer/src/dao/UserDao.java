@@ -11,7 +11,7 @@ import bean.User;
 public interface UserDao {
 
 	public void register(User user) throws HibernateException;
-	public void publish(Kid kid) throws HibernateException;
+	public int publish(Kid kid) throws HibernateException;
 	public List<User> getUserByEmail(String email) throws HibernateException;
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void upload(KidPhoto kidPhoto) throws HibernateException;
