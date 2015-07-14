@@ -44,6 +44,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>bean/User.hbm.xml</value>
 			<value>bean/Kid.hbm.xml</value>
 			<value>bean/KidPhoto.hbm.xml</value>
+			<value>bean/SuspectedKid.hbm.xml</value>
+			<value>bean/SuspectedKidPhoto.hbm.xml</value>
 		</list>
 	</property>
 	<property name="hibernateProperties">
@@ -95,6 +97,13 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 <!-- 上传图片的Action -->
 <bean id="upload" class="action.UploadAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
+
+<!-- 发布说说的Action -->
+<bean id="contact" class="action.ContactAction">
 	<property name="userManager">
 		<ref bean="userManager" />
 	</property>
