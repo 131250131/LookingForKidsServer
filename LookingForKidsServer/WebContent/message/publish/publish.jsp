@@ -8,15 +8,13 @@
 <body>
 	<s:form action="publish">
 		<s:textfield name="kidPublishForm.kidName" label="姓名" />
-		<s:textfield name="kidPublishForm.kidAge" label="年龄" />
+		<s:textfield name="kidPublishForm.gender" label="性别" />
+		<s:textfield name="kidPublishForm.birthday" label="出生日期" />
+		<s:textfield name="kidPublishForm.height" label="失踪时身高" />
 		<s:textfield name="kidPublishForm.lostTime" label="丢失时间" />
 		<s:textfield name="kidPublishForm.lostPlace" label="丢失地点" />
-		<s:textfield name="kidPublishForm.clothes_up" label="上身着装" />
-		<s:textfield name="kidPublishForm.clothes_down" label="下身着装" />
-		<s:textfield name="kidPublishForm.clothes_shoes" label="鞋子" />
-		<s:textarea name="kidPublishForm.appearanceDescription" label="外貌描述" cols="17" rows="5"/>
-		<s:textarea name="kidPublishForm.addedInfo" label="附加信息" cols="17" rows="5"/>
-		<s:textfield name="kidPublishForm.contactInfo" label="联系方式" />
+		<s:textfield name="kidPublishForm.homeTown" label="籍贯" />
+		<s:textarea name="kidPublishForm.description" label="描述" cols="17" rows="5"/>
 		<s:submit value="发布"></s:submit>
 	</s:form>
 </body>

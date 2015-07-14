@@ -10,7 +10,7 @@ public class DataBaseCreator {
 	String password="hongmao";
 	String sql="";
 	
-	//´Ë´¦µ÷ÓÃ´´½¨Êý¾Ý¿âµÄ·½·¨
+	//ï¿½Ë´ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½Ä·ï¿½ï¿½ï¿½
 	public static void main(String args[]){
 		DataBaseCreator creator = new DataBaseCreator();
 		creator.createLookingForKidsDB();
@@ -32,13 +32,14 @@ public class DataBaseCreator {
 				+ "userID int not null,"
 				+ "kidName varchar(10) not null,"
 				+ "gender varchar(10) not null,"
-				+ "birthday date not null,"
+				+ "birthday varchar(20) not null,"
 				+ "height int not null,"
-				+ "lostTime varchar(20) not null,"
+				+ "lostTime varchar(40) not null,"
 				+ "lostPlace varchar(20) not null,"
 				+ "homeTown varchar(40) not null,"
 				+ "description varchar(200) not null"
-				+ ")";
+				+ ")"
+				+ "DEFAULT CHARSET=utf-8";
 			stmt.execute(sql);
 			System.out.println("LostKidsInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -48,7 +49,8 @@ public class DataBaseCreator {
 				+ "photoID int auto_increment primary key,"
 				+ "kidID int not null,"
 				+ "photoPath varchar(200) not null"
-				+ ")";
+				+ ")"
+				+ "DEFAULT CHARSET=utf-8";
 			stmt.execute(sql);
 			System.out.println("kidsPhotoes has been created");
 			sql = "use LookingForKidsDB;";
@@ -61,7 +63,8 @@ public class DataBaseCreator {
 				+ "password varchar(100) not null,"
 				+ "phonenumber varchar(20),"
 				+ "authority int not null "
-				+ ")";
+				+ ")"
+				+ "DEFAULT CHARSET=utf-8";
 			stmt.execute(sql);
 			System.out.println("usersInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -73,7 +76,8 @@ public class DataBaseCreator {
 				+ "time varchar(20) not null,"
 				+ "place varchar(20) not null,"
 				+ "description varchar(200) not null"
-				+ ")";
+				+ ")"
+				+ "DEFAULT CHARSET=utf-8";
 			stmt.execute(sql);
 			System.out.println("MayBeLostKidsInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -83,7 +87,8 @@ public class DataBaseCreator {
 				+ "photoID int auto_increment primary key,"
 				+ "MBKidID int not null,"
 				+ "photoPath varchar(200) not null"
-				+ ")";
+				+ ")"
+				+ "DEFAULT CHARSET=utf-8";
 			stmt.execute(sql);
 			System.out.println("MayBeLostKidsPhotos has been created");
 			stmt.close();
