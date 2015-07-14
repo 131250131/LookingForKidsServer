@@ -41,5 +41,21 @@
 				<result name="error">/message/publish/fail.jsp</result>
 		</action>
 		
+		<action name="contact" class="action.ContactAction">
+			<!-- fileUpload拦截器配置 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置上传文件的最大字节数 -->
+				<param name="maximumSize">100000000</param>
+				<!-- 设置上传文件的类型 -->
+				<param name="allowedTypes">
+					image/gif,image/png,image/jpeg,image/jpg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+				<result name="input">/message/contact/contact.jsp</result>
+				<result name="success">/message/contact/success.jsp</result>
+				<result name="error">/message/contact/fail.jsp</result>
+		</action>
+		
 	</package>
 </struts>

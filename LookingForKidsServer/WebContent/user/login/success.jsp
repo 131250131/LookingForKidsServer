@@ -11,6 +11,6 @@
     <br>
     <s:a href="/LookingForKidsServer/message/publish/publish.jsp"> 发布走失儿童信息</s:a>
     <br>
-    <s:a href=""> 发布疑似走失儿童信息</s:a>
+    <s:a href="/LookingForKidsServer/message/contact/contact.jsp"> 发布疑似走失儿童信息</s:a>
 </body>
 </html>

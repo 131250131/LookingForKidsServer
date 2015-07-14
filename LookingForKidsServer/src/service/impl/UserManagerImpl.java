@@ -6,10 +6,12 @@ import org.hibernate.HibernateException;
 import org.springframework.beans.BeanUtils;
 
 import bean.Kid;
+import bean.SuspectedKid;
 import bean.User;
 import dao.UserDao;
 import form.KidPhotoUploadForm;
 import form.KidPublishForm;
+import form.SuspectedKidForm;
 import form.UserRegisterForm;
 import service.UserManager;
 
@@ -49,6 +51,12 @@ public class UserManagerImpl implements UserManager {
 
 	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException {
 		userDao.upload(kidPhotoUploadForm.getKidPhoto());
+	}
+
+	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException {
+		SuspectedKid suspectedKid = new SuspectedKid();
+		BeanUtils.copyProperties(suspectedKidForm, suspectedKid);
+		userDao.contact(suspectedKid);
 	}
 
 }

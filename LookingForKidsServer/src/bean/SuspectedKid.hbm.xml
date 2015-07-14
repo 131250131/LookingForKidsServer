@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="bean.SuspectedKid" table="maybelostkidsinfo" catalog="lookingforkidsdb">
+		<id column="MBKidID" name="kidID" type="integer" length="11">
+			<generator class="identity"/>
+		</id> 
+		<property name ="userID" column="userID" type="integer"/>
+		<property name ="time" column="time" type="string"/>
+		<property name ="place" column="place" type="string"/>
+		<property name ="description" column="description" type="string"/>
+		<!-- 一对多双向关系映射，单的一方的配置 -->
+		<!-- set name="photos" table="maybelostkidsphotos" cascade="all" inverse="false" lazy="false" sort="unsorted">
+			<key column="MBKidID"/>
+			<one-to-many class="bean.SuspectedKidPhoto"/>
+		</set -->
+		</class>
+</hibernate-mapping>

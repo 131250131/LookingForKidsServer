@@ -8,6 +8,8 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import bean.Kid;
 import bean.KidPhoto;
+import bean.SuspectedKid;
+import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
 
@@ -44,6 +46,17 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(kidPhoto);
+	}
+
+	public void contact(SuspectedKid suspectedKid) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		hibernateTemplate.setCheckWriteOperations(false);
+		hibernateTemplate.save(suspectedKid);
+		int kidID = suspectedKid.getKidID();
+		for(SuspectedKidPhoto suspectedKidPhoto : suspectedKid.getPhotos()){
+			suspectedKidPhoto.setKidID(kidID);
+			hibernateTemplate.save(suspectedKidPhoto);
+		}
 	}
 
 }
