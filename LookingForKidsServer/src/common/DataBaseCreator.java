@@ -31,15 +31,13 @@ public class DataBaseCreator {
 				+ "kidID int auto_increment primary key,"
 				+ "userID int not null,"
 				+ "kidName varchar(10) not null,"
-				+ "kidAge int not null,"
+				+ "gender varchar(10) not null,"
+				+ "birthday date not null,"
+				+ "height int not null,"
 				+ "lostTime varchar(20) not null,"
 				+ "lostPlace varchar(20) not null,"
-				+ "clothes_up varchar(40) not null,"
-				+ "clothes_down varchar(40) not null,"
-				+ "clothes_shoes varchar(40) not null,"
-				+ "addedInfo varchar(100) not null,"
-				+ "contactInfo varchar(40) not null,"
-				+ "appearanceDescription varchar(100) not null"
+				+ "homeTown varchar(40) not null,"
+				+ "description varchar(200) not null"
 				+ ")";
 			stmt.execute(sql);
 			System.out.println("LostKidsInfo has been created");
@@ -66,6 +64,28 @@ public class DataBaseCreator {
 				+ ")";
 			stmt.execute(sql);
 			System.out.println("usersInfo has been created");
+			sql = "use LookingForKidsDB;";
+			stmt.execute(sql);		
+			sql = ""
+				+ "create table MayBeLostKidsInfo("
+				+ "MBKidID int auto_increment primary key,"
+				+ "userID int not null,"
+				+ "time varchar(20) not null,"
+				+ "place varchar(20) not null,"
+				+ "description varchar(200) not null"
+				+ ")";
+			stmt.execute(sql);
+			System.out.println("MayBeLostKidsInfo has been created");
+			sql = "use LookingForKidsDB;";
+			stmt.execute(sql);		
+			sql = ""
+				+ "create table MayBeLostKidsPhotos("
+				+ "photoID int auto_increment primary key,"
+				+ "MBKidID int not null,"
+				+ "photoPath varchar(200) not null"
+				+ ")";
+			stmt.execute(sql);
+			System.out.println("MayBeLostKidsPhotos has been created");
 			stmt.close();
 			conn.close();
 			System.out.println("");
