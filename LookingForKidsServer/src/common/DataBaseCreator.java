@@ -39,7 +39,7 @@ public class DataBaseCreator {
 				+ "homeTown varchar(40) not null,"
 				+ "description varchar(200) not null"
 				+ ")"
-				+ "DEFAULT CHARSET=utf-8";
+				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
 			System.out.println("LostKidsInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -50,7 +50,7 @@ public class DataBaseCreator {
 				+ "kidID int not null,"
 				+ "photoPath varchar(200) not null"
 				+ ")"
-				+ "DEFAULT CHARSET=utf-8";
+				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
 			System.out.println("kidsPhotoes has been created");
 			sql = "use LookingForKidsDB;";
@@ -64,7 +64,7 @@ public class DataBaseCreator {
 				+ "phonenumber varchar(20),"
 				+ "authority int not null "
 				+ ")"
-				+ "DEFAULT CHARSET=utf-8";
+				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
 			System.out.println("usersInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -77,7 +77,7 @@ public class DataBaseCreator {
 				+ "place varchar(20) not null,"
 				+ "description varchar(200) not null"
 				+ ")"
-				+ "DEFAULT CHARSET=utf-8";
+				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
 			System.out.println("MayBeLostKidsInfo has been created");
 			sql = "use LookingForKidsDB;";
@@ -88,7 +88,7 @@ public class DataBaseCreator {
 				+ "MBKidID int not null,"
 				+ "photoPath varchar(200) not null"
 				+ ")"
-				+ "DEFAULT CHARSET=utf-8";
+				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
 			System.out.println("MayBeLostKidsPhotos has been created");
 			stmt.close();
