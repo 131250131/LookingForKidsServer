@@ -3,10 +3,10 @@ package face;
 public class Main {
 
 	public static void main(String[] args) {
-		FaceRecognization faceRecognization = new FaceRecognization();
-		faceRecognization.train("./res/recognizer/train/");
+		FaceRecognition faceRecognization = new FaceRecognition();
+		faceRecognization.train("./res/train/");
 		System.out.println("Training completed.");
-		faceRecognization.recognize("./res/recognizer/test/test.jpg", "./res/recognizer/trained.xml");
+		faceRecognization.recognize("./res/test/test2.jpg", "./res/trained.xml");
 	}
 
 }

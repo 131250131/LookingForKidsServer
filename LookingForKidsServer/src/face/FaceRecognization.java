@@ -7,7 +7,6 @@ import java.nio.Buffer;
 import java.nio.IntBuffer;
 import java.text.SimpleDateFormat;
 
-import common.MappingTable;
 
 import static org.bytedeco.javacpp.opencv_contrib.*;
 import static org.bytedeco.javacpp.opencv_core.*;
@@ -26,10 +25,7 @@ public class FaceRecognization {
 		Mat image = imread(testImagePath, CV_LOAD_IMAGE_GRAYSCALE);
 		FaceRecognizer faceRecognizer = createLBPHFaceRecognizer();	
 		faceRecognizer.load(dataSourcePath);
-		int label = faceRecognizer.predict(image);
-		MappingTable<Integer, String> mappingTable = new PhotoMappingTable();
-		System.out.println(mappingTable.getValue(label));
-		
+		int label = faceRecognizer.predict(image);	
 	}
 	
 	/**
