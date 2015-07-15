@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 
 import java.nio.Buffer;
 import java.nio.IntBuffer;
+import java.text.SimpleDateFormat;
 
 import common.MappingTable;
 
@@ -17,25 +18,26 @@ public class FaceRecognization {
 	private static final String TRAIN_RESULT_PATH = "./res/recognizer/trained.xml";
 	
 	/**
-	 * Ê¶±ğÒ»ÕÅÍ¼Æ¬ÖĞµÄÈË
-	 * @param testImagePath ÒªÊ¶±ğµÄÍ¼Æ¬µÄÂ·¾¶
-	 * @param dataSourcePath Êı¾İÔ´µÄÂ·¾¶
+	 * è¯†åˆ«ä¸€å¼ å›¾ç‰‡ä¸­çš„äºº
+	 * @param testImagePath è¦è¯†åˆ«çš„å›¾ç‰‡çš„è·¯å¾„
+	 * @param dataSourcePath æ•°æ®æºçš„è·¯å¾„
 	 */
 	public void recognize(String testImagePath, String dataSourcePath) {
 		Mat image = imread(testImagePath, CV_LOAD_IMAGE_GRAYSCALE);
-		FaceRecognizer faceRecognizer = createLBPHFaceRecognizer();
+		FaceRecognizer faceRecognizer = createLBPHFaceRecognizer();	
 		faceRecognizer.load(dataSourcePath);
 		int label = faceRecognizer.predict(image);
 		MappingTable<Integer, String> mappingTable = new PhotoMappingTable();
 		System.out.println(mappingTable.getValue(label));
+		
 	}
 	
 	/**
-	 * ÑµÁ·
-	 * @param trainDirectoryPath ÑµÁ·µÄÍ¼Æ¬ËùÔÚµÄÎÄ¼ş¼ĞµÄÂ·¾¶£¬Â·¾¶ÏÂÎÄ¼şÃûÎª¡°±àºÅ-Í¼Æ¬±àºÅ.À©Õ¹Ãû¡±
+	 * è®­ç»ƒ
+	 * @param trainDirectoryPath è®­ç»ƒçš„å›¾ç‰‡æ‰€åœ¨çš„æ–‡ä»¶å¤¹çš„è·¯å¾„ï¼Œè·¯å¾„ä¸‹æ–‡ä»¶åä¸ºâ€œç¼–å·-å›¾ç‰‡ç¼–å·.æ‰©å±•åâ€
 	 */
 	public void train(String trainDirectoryPath) {
-		//É¸Ñ¡³öÎÄ¼ş¼ĞÏÂµÄÍ¼Æ¬ÎÄ¼ş
+		//ç­›é€‰å‡ºæ–‡ä»¶å¤¹ä¸‹çš„å›¾ç‰‡æ–‡ä»¶
 		File root = new File(trainDirectoryPath);
 		FilenameFilter imageFilter = new FilenameFilter() {
 			public boolean accept(File dir, String name) {
@@ -45,7 +47,7 @@ public class FaceRecognization {
 		};
 		File[] imageFiles = root.listFiles(imageFilter);
         
-		//¶ÁÈ¡Í¼Æ¬£¬·ÖÅä±êÇ©
+		//è¯»å–å›¾ç‰‡ï¼Œåˆ†é…æ ‡ç­¾
 		MatVector images = new MatVector(imageFiles.length);
 		Mat labels = new Mat(imageFiles.length, 1, CV_32SC1);
 		Buffer buffer = labels.createBuffer();
@@ -59,7 +61,7 @@ public class FaceRecognization {
 			count++;
 		}
 		
-		//ÑµÁ·
+		//è®­ç»ƒ
 		FileStorage fileStorage = new FileStorage(TRAIN_RESULT_PATH, CV_STORAGE_FORMAT_XML);
 		FaceRecognizer faceRecognizer = createLBPHFaceRecognizer();
 		if (fileStorage.isOpened()) {
