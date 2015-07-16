@@ -43,7 +43,7 @@ public class RecognitionController {
 		return instance;
 	}
 		
-	public void recognizeOneImage(File imageFile) throws FaceppParseException, JSONException, InterruptedException{
+	public Map<String,Double> recognizeOneImage(File imageFile) throws FaceppParseException, JSONException, InterruptedException{
 		
 		JSONObject result;
 		JSONArray[] personsList = new JSONArray[length];
@@ -85,11 +85,14 @@ public class RecognitionController {
 				return o2.getValue().compareTo(o1.getValue());
 			}
 		});
+		Map<String,Double> recResult = new HashMap<String,Double>(); 
 		for(Map.Entry<String,Double> mapping : mappingList){
-			System.out.print(personNameToTag.get(mapping.getKey())+":"+mapping.getValue()+"\t");
+//			System.out.print(personNameToTag.get(mapping.getKey())+":"+mapping.getValue()+"\t");
+			recResult.put(personNameToTag.get(mapping.getKey()), mapping.getValue());
 		}
-		System.out.println();
 		
+		System.out.println();
+		return recResult;
 		
 	}
 	
@@ -153,7 +156,7 @@ public class RecognitionController {
 					
 				//delete person
 				result = httpRequests.personDelete(new PostParameters().setPersonName("person_test"));
-		
+				
 			}catch(Exception e){
 				e.printStackTrace();
 			}
