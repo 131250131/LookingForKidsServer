@@ -1,7 +1,5 @@
 package form;
 
-import java.io.UnsupportedEncodingException;
-
 public class KidPublishForm {
 	private int userID;
 	private String kidName;
@@ -26,12 +24,7 @@ public class KidPublishForm {
 	}
 
 	public void setKidName(String kidName) {
-		try {
-			this.kidName = new String(kidName.getBytes("ISO-8859-1"), "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} ;
+		this.kidName = kidName;
 	}
 
 	public String getGender() {

@@ -6,7 +6,7 @@
 <title>Register</title>
 </head>
 <body>
-	<s:form action="register">
+	<s:form action="register" method="post">
 		<s:textfield name="userRegisterForm.nickName" label="昵称" />
 		<s:textfield name="userRegisterForm.email" label="电子邮箱" />
 		<s:password name="userRegisterForm.password" label="密码"></s:password>
