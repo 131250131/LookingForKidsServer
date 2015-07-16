@@ -71,6 +71,7 @@ public class ContactAction extends ActionSupport{
 		ActionContext actionContext = ActionContext.getContext();
 		Map<String, Object> session = actionContext.getSession();
 		try {
+			suspectedKidForm.setUserID((Integer)session.get("userID"));
 
 			String savePath = ServletActionContext.getServletContext().getRealPath("/suspectedPhoto");
 			File folder = new File(savePath);
@@ -80,7 +81,7 @@ public class ContactAction extends ActionSupport{
 				FileInputStream fis = new FileInputStream(file.get(i));
 	            
 			    //得到图片保存的位置(根据root来得到图片保存的路径在tomcat下的该工程里)
-			    File destFile = new File(savePath, getFileFileName().get(i));
+			    File destFile = new File(savePath, suspectedKidForm.getUserID() + "_" +getFileFileName().get(i));
 			            
 			    //把图片写入到上面设置的路径里
 			    FileOutputStream fos = new FileOutputStream(destFile);
@@ -96,11 +97,10 @@ public class ContactAction extends ActionSupport{
 			Set<SuspectedKidPhoto> photos = new HashSet<SuspectedKidPhoto>();
 			for(int i=0;i<file.size();i++){
 				SuspectedKidPhoto photo = new SuspectedKidPhoto();
-				photo.setPhotoPath(savePath+"/"+ getFileFileName().get(i));
+				photo.setPhotoPath(savePath+"/"+ suspectedKidForm.getUserID() + "_" +getFileFileName().get(i));
 				photos.add(photo);
 			}
 			
-			suspectedKidForm.setUserID((Integer)session.get("userID"));
 			suspectedKidForm.setPhotos(photos);
 			userManager.contact(suspectedKidForm);
 			return SUCCESS;
