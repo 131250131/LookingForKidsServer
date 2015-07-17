@@ -87,7 +87,7 @@ public class RecognitionController {
 		});
 		Map<String,Double> recResult = new HashMap<String,Double>(); 
 		for(Map.Entry<String,Double> mapping : mappingList){
-//			System.out.print(personNameToTag.get(mapping.getKey())+":"+mapping.getValue()+"\t");
+			System.out.print(personNameToTag.get(mapping.getKey())+":"+mapping.getValue()+"\t");
 			recResult.put(personNameToTag.get(mapping.getKey()), mapping.getValue());
 		}
 		
