@@ -13,12 +13,6 @@
 			<result name="error">/user/register/fail.jsp</result>
 		</action>
 		
-	
-		<action name="publish" class="action.PublishAction">
-				<result name="input">/message/publish/publish.jsp</result>
-				<result name="success">/message/publish/success.jsp</result>
-				<result name="fail">/message/publish/fail.jsp</result>
-		</action>
 		
 		<action name="login" class="action.LoginAction">
 			<result name="success" type="json">
@@ -28,7 +22,7 @@
 			</result>
 		</action>
 		
-		<action name="upload" class="action.UploadAction">
+		<action name="publish" class="action.PublishAction">
 			<!-- fileUpload拦截器配置 -->
 			<interceptor-ref name="fileUpload">
 				<!-- 设置上传文件的最大字节数 -->
@@ -39,9 +33,11 @@
 				</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack" />
-				<result name="input">/message/publish/upload.jsp</result>
-				<result name="success">/message/publish/success.jsp</result>
-				<result name="error">/message/publish/fail.jsp</result>
+				<result name="success" type="json">
+				  <param name="includeProperties">
+				    resultMessage
+				  </param>
+				</result>
 		</action>
 		
 		<action name="contact" class="action.ContactAction">
@@ -55,9 +51,11 @@
 				</param>
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack" />
-				<result name="input">/message/contact/contact.jsp</result>
-				<result name="success">/message/contact/success.jsp</result>
-				<result name="error">/message/contact/fail.jsp</result>
+				<result name="success" type="json">
+				  <param name="includeProperties">
+				     resultMessage
+				  </param>
+				</result>
 		</action>
 		
 	</package>

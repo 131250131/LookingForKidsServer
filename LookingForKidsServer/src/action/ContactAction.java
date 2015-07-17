@@ -5,12 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
-
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.SuspectedKidPhoto;
@@ -26,6 +23,7 @@ public class ContactAction extends ActionSupport{
 	private List<String> fileContentType;
 	private SuspectedKidForm suspectedKidForm;
 	private UserManager userManager;
+	private int resultMessage;
 	
 	public List<File> getFile() {
 		return file;
@@ -66,13 +64,17 @@ public class ContactAction extends ActionSupport{
 	public void setUserManager(UserManager userManager) {
 		this.userManager = userManager;
 	}
+	
+	public int getResultMessage() {
+		return resultMessage;
+	}
 
+	public void setResultMessage(int resultMessage) {
+		this.resultMessage = resultMessage;
+	}
+	
 	public String execute(){
-		ActionContext actionContext = ActionContext.getContext();
-		Map<String, Object> session = actionContext.getSession();
 		try {
-			suspectedKidForm.setUserID((Integer)session.get("userID"));
-
 			String savePath = ServletActionContext.getServletContext().getRealPath("/suspectedPhoto");
 			File folder = new File(savePath);
 			if(!folder.exists() && !folder.isDirectory())
@@ -103,10 +105,14 @@ public class ContactAction extends ActionSupport{
 			
 			suspectedKidForm.setPhotos(photos);
 			userManager.contact(suspectedKidForm);
-			return SUCCESS;
+			setResultMessage(0);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ERROR;
+			setResultMessage(1);
 		}
+		
+		return SUCCESS;
 	}
+
+	
 }

@@ -1,5 +1,10 @@
 package form;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import bean.KidPhoto;
+
 public class KidPublishForm {
 	private int userID;
 	private String kidName;
@@ -10,6 +15,7 @@ public class KidPublishForm {
 	private String lostPlace;
 	private String homeTown;
 	private String description;
+	private Set<KidPhoto> photos = new HashSet<KidPhoto>();
 	
 	public int getUserID() {
 		return userID;
@@ -81,6 +87,14 @@ public class KidPublishForm {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<KidPhoto> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Set<KidPhoto> photos) {
+		this.photos = photos;
 	}
 	
 

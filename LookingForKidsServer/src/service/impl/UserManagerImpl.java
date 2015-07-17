@@ -9,7 +9,6 @@ import bean.Kid;
 import bean.SuspectedKid;
 import bean.User;
 import dao.UserDao;
-import form.KidPhotoUploadForm;
 import form.KidPublishForm;
 import form.SuspectedKidForm;
 import form.UserRegisterForm;
@@ -34,10 +33,10 @@ public class UserManagerImpl implements UserManager {
 	}
 
 
-	public int publish(KidPublishForm kidPublishForm) throws HibernateException {
+	public void publish(KidPublishForm kidPublishForm) throws HibernateException {
 		Kid kid = new Kid();
 		BeanUtils.copyProperties(kidPublishForm, kid);
-		return userDao.publish(kid);
+		userDao.publish(kid);
 	}
 	@Override
 	public List<User> getUserByEmail(String email) throws HibernateException {
@@ -47,10 +46,6 @@ public class UserManagerImpl implements UserManager {
 	@Override
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException {
 		return userDao.getUserByPhoneNumber(phoneNumber);
-	}
-
-	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException {
-		userDao.upload(kidPhotoUploadForm.getKidPhoto());
 	}
 
 	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException {

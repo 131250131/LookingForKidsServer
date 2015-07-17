@@ -8,6 +8,7 @@
 </head>
 <body>
 	<s:form action="contact" enctype="multipart/form-data" method="post">
+	    <s:textfield name="suspectedKidForm.userID" label="用户ID" />
 		<s:textfield name="suspectedKidForm.time" label="时间" />
 		<s:textfield name="suspectedKidForm.place" label="地点" />
 		<s:textarea name="suspectedKidForm.description" label="描述" cols="17" rows="5"/>
