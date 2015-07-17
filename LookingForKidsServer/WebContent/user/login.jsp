@@ -12,7 +12,7 @@
 		<s:submit value="登录"></s:submit>
 	</s:form>
 	
-	<s:a href="/LookingForKidsServer/user/register/register.jsp">
+	<s:a href="/LookingForKidsServer/user/register.jsp">
 	注册用户
 	</s:a>
 

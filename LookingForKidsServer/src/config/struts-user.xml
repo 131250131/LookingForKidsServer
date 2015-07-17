@@ -6,13 +6,12 @@
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
 	<constant name="struts.multipart.saveDir" value="/tmp"/>
     <constant name="struts.multipart.maxSize" value="1000000000" />
-	<package name="user" extends="struts-default,json-default">
+	<package name="user" namespace="/user" extends="struts-default,json-default">
 		<action name="register" class="action.RegisterAction">
 			<result name="input">/user/register/register.jsp</result>
 			<result name="success">/user/register/success.jsp</result>
 			<result name="error">/user/register/fail.jsp</result>
 		</action>
-		
 		
 		<action name="login" class="action.LoginAction">
 			<result name="success" type="json">
@@ -21,50 +20,5 @@
 		       </param>
 			</result>
 		</action>
-		
-		<action name="publish" class="action.PublishAction">
-			<!-- fileUpload拦截器配置 -->
-			<interceptor-ref name="fileUpload">
-				<!-- 设置上传文件的最大字节数 -->
-				<param name="maximumSize">100000000</param>
-				<!-- 设置上传文件的类型 -->
-				<param name="allowedTypes">
-					image/gif,image/png,image/jpeg,image/jpg,image/pjpeg
-				</param>
-			</interceptor-ref>
-			<interceptor-ref name="defaultStack" />
-				<result name="success" type="json">
-				  <param name="includeProperties">
-				    resultMessage
-				  </param>
-				</result>
-		</action>
-		
-		<action name="contact" class="action.ContactAction">
-			<!-- fileUpload拦截器配置 -->
-			<interceptor-ref name="fileUpload">
-				<!-- 设置上传文件的最大字节数 -->
-				<param name="maximumSize">100000000</param>
-				<!-- 设置上传文件的类型 -->
-				<param name="allowedTypes">
-					image/gif,image/png,image/jpeg,image/jpg,image/pjpeg
-				</param>
-			</interceptor-ref>
-			<interceptor-ref name="defaultStack" />
-				<result name="success" type="json">
-				  <param name="includeProperties">
-				     resultMessage
-				  </param>
-				</result>
-		</action>
-		
-		<action name="find" class="action.FindAction">
-			<result name="success" type="json">
-		       <param name="excludeProperties">
-		       		kidID,userManager
-		       </param>
-			</result>
-		</action>
-		
 	</package>
 </struts>

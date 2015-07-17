@@ -4,10 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>contact</title>
+<title>publish</title>
 </head>
 <body>
-	<s:form action="contact" enctype="multipart/form-data" method="post">
+	<s:form action="publish" enctype="multipart/form-data" method="post">
 	    <s:textfield name="suspectedKidForm.userID" label="用户ID" />
 		<s:textfield name="suspectedKidForm.time" label="时间" />
 		<s:textfield name="suspectedKidForm.place" label="地点" />

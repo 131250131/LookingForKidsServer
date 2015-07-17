@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
+    <constant name="struts.multipart.maxSize" value="1000000000" />
+	<package name="suspectedlostkid" namespace="/suspectedlostkid" extends="struts-default,json-default">
+		<action name="publish" class="action.ContactAction">
+			<!-- fileUpload拦截器配置 -->
+			<interceptor-ref name="fileUpload">
+				<!-- 设置上传文件的最大字节数 -->
+				<param name="maximumSize">100000000</param>
+				<!-- 设置上传文件的类型 -->
+				<param name="allowedTypes">
+					image/gif,image/png,image/jpeg,image/jpg,image/pjpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack" />
+				<result name="success" type="json">
+				  <param name="includeProperties">
+				     resultMessage
+				  </param>
+				</result>
+		</action>
+	</package>
+</struts>
