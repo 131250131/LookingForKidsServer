@@ -36,42 +36,70 @@ public class GroupManager {
 		File files = new File(TRAIN_PATH);
 		
 		for (File imageFile : files.listFiles()) {
+			
 			Map<String, String> map = apiKeySecretMap.get();
 			httpRequests = new HttpRequests(map.get("key"), map.get("secret"));
+			//create person
+			httpRequests.personCreate(
+					new PostParameters().setPersonName("person_"+count));
 			
-			//detect face
-			JSONObject result = httpRequests.detectionDetect(
-					new PostParameters().setImg(imageFile));
-
-			for (int i = 0; i < result.getJSONArray("face").length(); ++i) {			
-				//create person
-				httpRequests.personCreate(
-						new PostParameters().setPersonName("person_"+count));
+			for(File imagePath:imageFile.listFiles()){
+				//detect face
+				JSONObject result = httpRequests.detectionDetect(
+						new PostParameters().setImg(imagePath));
+				for (int i = 0; i < result.getJSONArray("face").length(); ++i) {				
+					//add face
+					httpRequests.personAddFace(new PostParameters().setPersonName("person_" + count).setFaceId(
+							result.getJSONArray("face").getJSONObject(i).getString("face_id")));
+				}
 				
-				//add face
-				httpRequests.personAddFace(new PostParameters().setPersonName("person_" + count).setFaceId(
-						result.getJSONArray("face").getJSONObject(i).getString("face_id")));
-				
-				//set person info
-				httpRequests.personSetInfo(new PostParameters().setPersonName(
-						"person_" + count).setTag(imageFile.getName().split("\\.")[0]));
-				
-				//add person
-				httpRequests.groupAddPerson(
-						new PostParameters().setGroupName("group").setPersonName("person_" + count));
-				
-				count++;
 			}
+			
+			//set person info
+			httpRequests.personSetInfo(new PostParameters().setPersonName(
+					"person_" + count).setTag(imageFile.getName().split("\\.")[0]));
+			
+			//add person
+			httpRequests.groupAddPerson(
+					new PostParameters().setGroupName("group").setPersonName("person_" + count));
+			
+			this.count++;
+			
 		}
 		
 	}
 		
-	//家长上传走丢儿童的一系列照片
-	public void addSomePhoto(String trainPath){
+	//家长上传走丢儿童的一系列照片,传入的参数是子文件夹的绝对/相对地址
+	public void addSomePhoto(String trainPath) throws FaceppParseException, JSONException{
 			Map<String, String> map = apiKeySecretMap.get();
 			httpRequests = new HttpRequests(map.get("key"), map.get("secret"));
+			File files = new File(TRAIN_PATH);
+
+			//create person
+			httpRequests.personCreate(
+					new PostParameters().setPersonName("person_"+count));
 			
+			for(File imagePath:files.listFiles()){
+				//detect face
+				JSONObject result = httpRequests.detectionDetect(
+						new PostParameters().setImg(imagePath));
+				for (int i = 0; i < result.getJSONArray("face").length(); ++i) {				
+					//add face
+					httpRequests.personAddFace(new PostParameters().setPersonName("person_" + count).setFaceId(
+							result.getJSONArray("face").getJSONObject(i).getString("face_id")));
+				}
+				
+			}
 			
+			//set person info
+			httpRequests.personSetInfo(new PostParameters().setPersonName(
+					"person_" + count).setTag(files.getName().split("\\.")[0]));
+			
+			//add person
+			httpRequests.groupAddPerson(
+					new PostParameters().setGroupName("group").setPersonName("person_" + count));
+			
+			this.count++;
 	}
 	
 	//已找回儿童的数据从训练队列中删除
