@@ -10,7 +10,6 @@ public class DataBaseCreator {
 	String password="hongmao";
 	String sql="";
 	
-	//�˴����ô�����ݿ�ķ���
 	public static void main(String args[]){
 		DataBaseCreator creator = new DataBaseCreator();
 		creator.createLookingForKidsDB();

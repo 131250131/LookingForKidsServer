@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 
 import bean.Kid;
+import bean.KidPhoto;
 import bean.SuspectedKid;
 import bean.User;
 
