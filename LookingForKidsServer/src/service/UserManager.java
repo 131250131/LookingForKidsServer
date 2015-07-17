@@ -18,4 +18,5 @@ public interface UserManager {
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException;
 	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException;
+//	public List<>
 }

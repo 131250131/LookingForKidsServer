@@ -4,6 +4,7 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
 	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.multipart.saveDir" value="/tmp"/>
     <constant name="struts.multipart.maxSize" value="1000000000" />
 	<package name="user" extends="struts-default,json-default">
 		<action name="register" class="action.RegisterAction">

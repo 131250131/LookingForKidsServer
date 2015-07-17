@@ -7,19 +7,11 @@
 <title>find</title>
 </head>
 <body>
-	<s:form action="publish" enctype="multipart/form-data">
-		<s:textfield name="kidPublishForm.userID" label="用户ID" />
-		<s:textfield name="kidPublishForm.kidName" label="姓名" />
-		<s:textfield name="kidPublishForm.kidAge" label="年龄" />
-		<s:textfield name="kidPublishForm.lostTime" label="丢失时间" />
-		<s:textfield name="kidPublishForm.lostPlace" label="丢失地点" />
-		<s:textfield name="kidPublishForm.clothes_up" label="上身着装" />
-		<s:textfield name="kidPublishForm.clothes_down" label="下身着装" />
-		<s:textfield name="kidPublishForm.clothes_shoes" label="鞋子" />
-		<s:textarea name="kidPublishForm.appearanceDescription" label="外貌描述" cols="17" rows="5"/>
-		<s:textarea name="kidPublishForm.addedInfo" label="附加信息" cols="17" rows="5"/>
-		<s:textfield name="kidPublishForm.contactInfo" label="联系方式" />
-		<s:submit value="查找"></s:submit>
+	<s:form action="upperfind">
+		<s:submit value="查看"></s:submit>
+	</s:form>
+	<s:form action="downfind">
+		<s:submit value="查看"></s:submit>
 	</s:form>
 </body>
 </html>

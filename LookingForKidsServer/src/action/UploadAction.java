@@ -66,7 +66,7 @@ public class UploadAction extends ActionSupport{
 			FileInputStream fis = new FileInputStream(file);
 		            
 		    //得到图片保存的位置(根据root来得到图片保存的路径在tomcat下的该工程里)
-		    File destFile = new File(savePath, session.get("userID") + "_" + getFileFileName());
+		    File destFile = new File(savePath, session.get("kidID") + "-" + getFileFileName());
 		            
 		    //把图片写入到上面设置的路径里
 		    FileOutputStream fos = new FileOutputStream(destFile);
@@ -80,7 +80,7 @@ public class UploadAction extends ActionSupport{
 		    
 			KidPhoto kidPhoto = new KidPhoto();
 			kidPhoto.setKidID((int)session.get("kidID"));
-			kidPhoto.setPhotoPath(savePath+"/"+ session.get("userID") + "_" + getFileFileName());
+			kidPhoto.setPhotoPath("/photo/" + session.get("kidID") + "-" + getFileFileName());
 
 			kidPhotoUploadForm.setKidPhoto(kidPhoto);
 			userManager.upload(kidPhotoUploadForm);

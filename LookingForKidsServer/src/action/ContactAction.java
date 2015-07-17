@@ -81,7 +81,7 @@ public class ContactAction extends ActionSupport{
 				FileInputStream fis = new FileInputStream(file.get(i));
 	            
 			    //得到图片保存的位置(根据root来得到图片保存的路径在tomcat下的该工程里)
-			    File destFile = new File(savePath, suspectedKidForm.getUserID() + "_" +getFileFileName().get(i));
+			    File destFile = new File(savePath, suspectedKidForm.getUserID() + "-" +getFileFileName().get(i));
 			            
 			    //把图片写入到上面设置的路径里
 			    FileOutputStream fos = new FileOutputStream(destFile);
@@ -97,7 +97,7 @@ public class ContactAction extends ActionSupport{
 			Set<SuspectedKidPhoto> photos = new HashSet<SuspectedKidPhoto>();
 			for(int i=0;i<file.size();i++){
 				SuspectedKidPhoto photo = new SuspectedKidPhoto();
-				photo.setPhotoPath(savePath+"/"+ suspectedKidForm.getUserID() + "_" +getFileFileName().get(i));
+				photo.setPhotoPath("/suspectedPhoto"+"/"+ suspectedKidForm.getUserID() + "-" +getFileFileName().get(i));
 				photos.add(photo);
 			}
 			
