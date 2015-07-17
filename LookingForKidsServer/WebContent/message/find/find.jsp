@@ -7,10 +7,8 @@
 <title>find</title>
 </head>
 <body>
-	<s:form action="upperfind">
-		<s:submit value="查看"></s:submit>
-	</s:form>
-	<s:form action="downfind">
+	<s:form action="find">
+		<s:textfield name="kidID" label="孩子ID"></s:textfield>
 		<s:submit value="查看"></s:submit>
 	</s:form>
 </body>

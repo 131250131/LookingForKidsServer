@@ -15,4 +15,6 @@ public interface UserDao {
 	public List<User> getUserByEmail(String email) throws HibernateException;
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void contact(SuspectedKid suspectedKid) throws HibernateException;
+	public List<Kid> getKids(int kidID) throws HibernateException;
+	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException;
 }

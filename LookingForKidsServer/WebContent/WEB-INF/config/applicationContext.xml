@@ -102,5 +102,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<ref bean="userManager" />
 	</property>
 </bean>
+
+<!-- 查看发布信息的Action -->
+<bean id="find" class="action.FindAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
 <!-- more bean definitions go here -->
 </beans>

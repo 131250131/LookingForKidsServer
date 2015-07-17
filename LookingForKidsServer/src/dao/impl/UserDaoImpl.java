@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -56,6 +57,28 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 			suspectedKidPhoto.setKidID(kidID);
 			hibernateTemplate.save(suspectedKidPhoto);
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Kid> getKids(int kidID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		if(kidID == 0) {
+			hibernateTemplate.setMaxResults(15);
+			return (List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc");
+		} else {
+			hibernateTemplate.setMaxResults(15);
+			return (List<Kid>)hibernateTemplate.find("from bean.Kid k where k.kidID < ? order by k.kidID desc", kidID);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		List<KidPhoto> photos = new LinkedList<KidPhoto>();
+		for(int i=0;i<kidsID.size();i++){
+			photos.addAll((List<KidPhoto>)hibernateTemplate.find("from bean.KidPhoto k where k.kidID = ?",kidsID.get(i)));
+		}
+		return photos;
 	}
 
 }
