@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.HibernateException;
 
+import bean.Kid;
+import bean.KidPhoto;
 import bean.User;
 import form.KidPhotoUploadForm;
 import form.KidPublishForm;
@@ -18,5 +20,6 @@ public interface UserManager {
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void upload(KidPhotoUploadForm kidPhotoUploadForm) throws HibernateException;
 	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException;
-//	public List<>
+	public List<Kid> getKids(int kidID) throws HibernateException;
+	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException;
 }

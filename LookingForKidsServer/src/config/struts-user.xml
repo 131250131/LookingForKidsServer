@@ -60,5 +60,13 @@
 				<result name="error">/message/contact/fail.jsp</result>
 		</action>
 		
+		<action name="find" class="action.FindAction">
+			<result name="success" type="json">
+		       <param name="excludeProperties">
+		       		kidID,userManager
+		       </param>
+			</result>
+		</action>
+		
 	</package>
 </struts>
