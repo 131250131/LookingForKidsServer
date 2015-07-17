@@ -50,7 +50,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	</property>
 	<property name="hibernateProperties">
 		<props>
-		<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+		<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 		<prop key="show_sql">true</prop>
 			<prop key="hibernate.jdbc.batch_size">20</prop>
 		</props>
