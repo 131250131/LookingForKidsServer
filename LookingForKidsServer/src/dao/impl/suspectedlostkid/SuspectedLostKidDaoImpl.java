@@ -1,9 +1,6 @@
 package dao.impl.suspectedlostkid;
 
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,11 +8,13 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.hibernate.HibernateException;
+import org.json.JSONException;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.facepp.error.FaceppParseException;
 
+import bean.Kid;
 import bean.SimilarityRecord;
 import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
@@ -41,29 +40,32 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 				suspectedKidPhoto.setKidID(kidID);
 				hibernateTemplate.save(suspectedKidPhoto);
 				File fileImage = new File(suspectedKidPhoto.getPhotoPath());
+				ArrayList<Entry<String, Double>> tempMap;
 				try {
-					Class.forName("com.mysql.jdbc.Driver");
-					Connection conn = DriverManager.getConnection(url,user,password);
-					Statement stmt = conn.createStatement();
-					sql = "use LookingForKidsDB;";
-					stmt.execute(sql);		
-					ArrayList<Entry<String, Double>> tempMap = rc.recognizeOneImage(fileImage);
-					//锟斤拷识锟斤拷匹锟斤拷慕锟斤拷锟斤拷锟斤拷菘锟�
+					tempMap = rc.recognizeOneImage(fileImage);
 					for(Map.Entry<String,Double> mapping : tempMap){
 						System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
-						sql = "INSERT INTO SimilarityMap(userID,MBKidID,similarity) "
-								+ "VALUES("+mapping.getKey()+", "+kidID+", "+mapping.getValue()+");";
-						stmt.execute(sql);
+						SimilarityRecord record = new SimilarityRecord();
+						Kid kid = (Kid) hibernateTemplate.findByNamedParam("from bean.Kid k where k.kidID=:id", "id", Integer.parseInt(mapping.getKey())).get(0);
+						record.setUserID(kid.getUserID());
+						record.setSuspectedkidID(kidID);
+						record.setSimilarity((int)(double)mapping.getValue());
+						hibernateTemplate.setCheckWriteOperations(false);
+						
 					}
-					stmt.close();
-					conn.close();
+					
 				} catch (FaceppParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} catch (Exception e){
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+					
+						
 			}
 		}
 	
@@ -108,9 +110,9 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	
 	@SuppressWarnings("unchecked")
 	public List<SimilarityRecord> getSimilarityRecords(int userID) throws HibernateException {
-		System.out.println(userID);
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
-		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord s where s.userID=:id order by s.similarity desc", "id", userID);
+		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord k where k.userID:=userID order by k.similarity desc",
+				                                  "userID", userID);
 		
 	}
 
