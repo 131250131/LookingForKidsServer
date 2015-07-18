@@ -17,6 +17,7 @@ public interface UserManager {
 
 	public void register(UserRegisterForm userRegisterForm) throws HibernateException;
 	public void publish(KidPublishForm kidRegisterForm) throws HibernateException;
+	public User getInfo(int userID) throws HibernateException;
 	public List<User> getUserByEmail(String email) throws HibernateException;
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException;
@@ -24,4 +25,5 @@ public interface UserManager {
 	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException;
 	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException;
 	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException;
+	public int getKidID() throws HibernateException;
 }

@@ -95,6 +95,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	</property>
 </bean>
 
+<!-- 用户登录的Action -->
+<bean id="getinfo" class="action.GetInfoAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
 
 <!-- 发布说说的Action -->
 <bean id="contact" class="action.ContactAction">

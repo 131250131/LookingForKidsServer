@@ -19,7 +19,6 @@ import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
 import facerec.GroupManager;
-import facerec.RecognizitionController;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
@@ -150,6 +149,22 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 			photos.addAll((List<SuspectedKidPhoto>)hibernateTemplate.findByNamedParam(queryString, paramName, value));
 		}
 		return photos;
+	}
+
+	@SuppressWarnings("unchecked")
+	public int getKidID() throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		return ((List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc")).get(0).getKidID();
+	}
+
+	@SuppressWarnings("unchecked")
+	public User getInfo(int userID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		List<User> users = (List<User>) hibernateTemplate.findByNamedParam("from bean.User u where u.userID=:id", "id", userID);
+		if (users.size()>0) {
+			return users.get(0);
+		}
+		return null;
 	}
 
 }
