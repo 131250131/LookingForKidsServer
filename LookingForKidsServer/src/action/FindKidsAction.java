@@ -9,7 +9,7 @@ import bean.Kid;
 import bean.KidPhoto;
 import service.UserManager;
 
-public class FindAction extends ActionSupport{
+public class FindKidsAction extends ActionSupport{
 
 	private static final long serialVersionUID = 969911471773947031L;
 	

@@ -68,8 +68,11 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 			hibernateTemplate.setMaxResults(15);
 			return (List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc");
 		} else {
+			String queryString = "from bean.Kid k where k.kidID<:id order by k.kidID desc";
+			String paramName = "id";
+			int value = kidID;
 			hibernateTemplate.setMaxResults(15);
-			return (List<Kid>)hibernateTemplate.find("from bean.Kid k where k.kidID < ? order by k.kidID desc", kidID);
+			return (List<Kid>)hibernateTemplate.findByNamedParam(queryString, paramName, value);
 		}
 	}
 
@@ -77,8 +80,39 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		List<KidPhoto> photos = new LinkedList<KidPhoto>();
+		String queryString = "from bean.KidPhoto k where k.kidID=:id";
+		String paramName = "id";
 		for(int i=0;i<kidsID.size();i++){
-			photos.addAll((List<KidPhoto>)hibernateTemplate.find("from bean.KidPhoto k where k.kidID = ?",kidsID.get(i)));
+			int value = kidsID.get(i);
+			photos.addAll((List<KidPhoto>)hibernateTemplate.findByNamedParam(queryString, paramName, value));
+		}
+		return photos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		if(kidID == 0) {
+			hibernateTemplate.setMaxResults(15);
+			return (List<SuspectedKid>)hibernateTemplate.find("from bean.SuspectedKid k order by k.kidID desc");
+		} else {
+			String queryString = "from bean.SuspectedKid k where k.kidID<:id order by k.kidID desc";
+			String paramName = "id";
+			int value = kidID;
+			hibernateTemplate.setMaxResults(15);
+			return (List<SuspectedKid>)hibernateTemplate.findByNamedParam(queryString, paramName, value);
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		List<SuspectedKidPhoto> photos = new LinkedList<SuspectedKidPhoto>();
+		String queryString = "from bean.SuspectedKidPhoto k where k.kidID=:id";
+		String paramName = "id";
+		for(int i=0;i<kidsID.size();i++){
+			int value = kidsID.get(i);
+			photos.addAll((List<SuspectedKidPhoto>)hibernateTemplate.findByNamedParam(queryString, paramName, value));
 		}
 		return photos;
 	}

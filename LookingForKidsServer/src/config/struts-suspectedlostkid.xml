@@ -24,5 +24,13 @@
 				  </param>
 				</result>
 		</action>
+		
+		<action name="lookover" class="action.FindSuspectedKidsAction">
+			<result name="success" type="json">
+		       <param name="excludeProperties">
+		       		kidID,userManager
+		       </param>
+			</result>
+		</action>
 	</package>
 </struts>
