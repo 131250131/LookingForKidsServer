@@ -19,6 +19,7 @@ import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
 import facerec.GroupManager;
+import facerec.RecognizitionController;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
