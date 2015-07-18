@@ -68,8 +68,13 @@ public class PublishAction extends ActionSupport{
 
 	public String execute(){
 		try {
+			int kidID = userManager.getKidID()+1;
 			String savePath = ServletActionContext.getServletContext().getRealPath("/photo");
 			File folder = new File(savePath);
+			if(!folder.exists() && !folder.isDirectory())
+				folder.mkdir();
+			savePath = ServletActionContext.getServletContext().getRealPath("/photo/"+ kidID);
+			folder = new File(savePath);
 			if(!folder.exists() && !folder.isDirectory())
 				folder.mkdir();
 			for(int i=0;i<file.size();i++){
@@ -92,7 +97,7 @@ public class PublishAction extends ActionSupport{
 			Set<KidPhoto> photos = new HashSet<KidPhoto>();
 			for(int i=0;i<file.size();i++){
 				KidPhoto photo = new KidPhoto();
-				photo.setPhotoPath("/photo"+"/"+ kidPublishForm.getUserID() + "-" +getFileFileName().get(i));
+				photo.setPhotoPath("/photo/"+ kidID + "/" + kidPublishForm.getUserID() + "-" +getFileFileName().get(i));
 				photos.add(photo);
 			}
 			kidPublishForm.setPhotos(photos);

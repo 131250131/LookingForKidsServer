@@ -115,4 +115,10 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		return photos;
 	}
 
+	@SuppressWarnings("unchecked")
+	public int getKidID() throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		return ((List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc")).get(0).getKidID();
+	}
+
 }

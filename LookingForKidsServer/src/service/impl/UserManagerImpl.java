@@ -72,4 +72,8 @@ public class UserManagerImpl implements UserManager {
 		return userDao.getSuspectedPhotos(kidsID);
 	}
 
+	public int getKidID() throws HibernateException {
+		return userDao.getKidID();
+	}
+
 }

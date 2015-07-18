@@ -21,4 +21,5 @@ public interface UserDao {
 	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException;
 	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException;
 	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException;	
+	public int getKidID() throws HibernateException; 
 }
