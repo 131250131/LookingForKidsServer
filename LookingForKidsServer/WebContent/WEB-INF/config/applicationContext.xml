@@ -61,19 +61,45 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<property name="sessionFactory" ref="sessionFactory" />
 </bean>
 
-<bean id="userDao" class="dao.impl.UserDaoImpl">
+<bean id="userDao" class="dao.impl.user.UserDaoImpl">
 	<property name="sessionFactory">
 		<ref bean="sessionFactory" />
 	</property>
 </bean>
       
 <!--用户业务逻辑类 -->
-<bean id="userManager" class="service.impl.UserManagerImpl">
+<bean id="userManager" class="service.impl.user.UserManagerImpl">
 	<property name="userDao">
 		<ref bean="userDao" />
 	</property>
 </bean>
+
+<bean id="lostKidDao" class="dao.impl.lostkid.LostKidDaoImpl">
+	<property name="sessionFactory">
+		<ref bean="sessionFactory" />
+	</property>
+</bean>
       
+<!--用户业务逻辑类 -->
+<bean id="lostKidManager" class="service.impl.lostkid.LostKidManagerImpl">
+	<property name="lostKidDao">
+		<ref bean="lostKidDao" />
+	</property>
+</bean>
+
+<bean id="suspectedLostKidDao" class="dao.impl.suspectedlostkid.SuspectedLostKidDaoImpl">
+	<property name="sessionFactory">
+		<ref bean="sessionFactory" />
+	</property>
+</bean>
+      
+<!--用户业务逻辑类 -->
+<bean id="suspectedLostKidManager" class="service.impl.suspectedlostkid.SuspectedLostKidManagerImpl">
+	<property name="suspectedLostKidDao">
+		<ref bean="suspectedLostKidDao" />
+	</property>
+</bean>
+
 <!-- 用户注册的Action -->
 <bean id="register" class="action.RegisterAction">
 	<property name="userManager">
@@ -83,8 +109,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
       
 <!-- 发布信息的Action -->
 <bean id="publish" class="action.PublishAction">
- 	<property name="userManager">
-		<ref bean="userManager" />
+ 	<property name="lostKidManager">
+		<ref bean="lostKidManager" />
 	</property>
 </bean>
 
@@ -104,22 +130,22 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 <!-- 发布说说的Action -->
 <bean id="contact" class="action.ContactAction">
-	<property name="userManager">
-		<ref bean="userManager" />
+	<property name="suspectedLostKidManager">
+		<ref bean="suspectedLostKidManager" />
 	</property>
 </bean>
 
 <!-- 查看发布信息的Action -->
 <bean id="find" class="action.FindKidsAction">
-	<property name="userManager">
-		<ref bean="userManager" />
+	<property name="lostKidManager">
+		<ref bean="lostKidManager" />
 	</property>
 </bean>
 
 <!-- 查看发布信息的Action -->
 <bean id="lookover" class="action.FindSuspectedKidsAction">
-	<property name="userManager">
-		<ref bean="userManager" />
+	<property name="suspectedLostKidManager">
+		<ref bean="suspectedLostKidManager" />
 	</property>
 </bean>
 <!-- more bean definitions go here -->

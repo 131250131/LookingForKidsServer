@@ -13,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.KidPhoto;
 import form.KidPublishForm;
-import service.UserManager;
+import service.lostkid.LostKidManager;
 
 public class PublishAction extends ActionSupport{
 
@@ -23,7 +23,7 @@ public class PublishAction extends ActionSupport{
 	private List<String> fileFileName;
 	private List<String> fileContentType;
 	private KidPublishForm kidPublishForm;
-	private UserManager	userManager;
+	private LostKidManager	lostKidManager;
 	private int resultMessage;
 	
 	public List<File> getFile() {
@@ -58,17 +58,17 @@ public class PublishAction extends ActionSupport{
 		this.kidPublishForm = kidPublishForm;
 	}
 	
-	public UserManager getUserManager() {
-		return userManager;
+	public LostKidManager getLostKidManager() {
+		return lostKidManager;
 	}
 
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
+	public void setLostKidManager(LostKidManager lostKidManager) {
+		this.lostKidManager = lostKidManager;
 	}
 
 	public String execute(){
 		try {
-			int kidID = userManager.getKidID()+1;
+			int kidID = lostKidManager.getKidID()+1;
 			String savePath = ServletActionContext.getServletContext().getRealPath("/photo");
 			File folder = new File(savePath);
 			if(!folder.exists() && !folder.isDirectory())
@@ -101,7 +101,7 @@ public class PublishAction extends ActionSupport{
 				photos.add(photo);
 			}
 			kidPublishForm.setPhotos(photos);
-			userManager.publish(kidPublishForm);
+			lostKidManager.publish(kidPublishForm);
 			setResultMessage(0);
 		} catch (Exception e) {
 			e.printStackTrace();

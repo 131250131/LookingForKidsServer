@@ -1,4 +1,4 @@
-package dao.impl;
+package dao.impl.user;
 
 public class AdminDaoImpl extends UserDaoImpl {
 

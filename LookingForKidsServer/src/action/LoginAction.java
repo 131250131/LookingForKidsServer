@@ -3,7 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 import bean.User;
 import form.UserLoginForm;
-import service.UserManager;
+import service.user.UserManager;
 
 public class LoginAction extends ActionSupport{
 	/**

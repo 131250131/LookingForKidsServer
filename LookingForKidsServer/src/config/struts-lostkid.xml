@@ -28,7 +28,7 @@
 		<action name="lookover" class="action.FindKidsAction">
 			<result name="success" type="json">
 		       <param name="excludeProperties">
-		       		kidID,userManager
+		       		kidID,lostKidManager
 		       </param>
 			</result>
 		</action>

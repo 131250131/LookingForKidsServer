@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
-import service.UserManager;
+import service.suspectedlostkid.SuspectedLostKidManager;
 
 public class FindSuspectedKidsAction extends ActionSupport{
 
@@ -16,14 +16,14 @@ public class FindSuspectedKidsAction extends ActionSupport{
 	private int kidID;
 	private List<SuspectedKidPhoto> photosPath;
 	private List<SuspectedKid> kids;
-	private UserManager userManager;
+	private SuspectedLostKidManager suspectedLostKidManager;
 
-	public UserManager getUserManager() {
-		return userManager;
+	public SuspectedLostKidManager getSuspectedLostKidManager() {
+		return suspectedLostKidManager;
 	}
 
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
+	public void setSuspectedLostKidManager(SuspectedLostKidManager suspectedLostKidManager) {
+		this.suspectedLostKidManager = suspectedLostKidManager;
 	}
 
 	public int getKidID() {
@@ -52,12 +52,12 @@ public class FindSuspectedKidsAction extends ActionSupport{
 
 	public String execute(){
 		try {
-			setKids(userManager.getSuspectedKids(kidID));
+			setKids(suspectedLostKidManager.getSuspectedKids(kidID));
 			List<Integer> kidsID = new LinkedList<Integer>();
 			for(int i=0;i<kids.size();i++){
 				kidsID.add(kids.get(i).getKidID());
 			}
-			setPhotosPath(userManager.getSuspectedPhotos(kidsID));
+			setPhotosPath(suspectedLostKidManager.getSuspectedPhotos(kidsID));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

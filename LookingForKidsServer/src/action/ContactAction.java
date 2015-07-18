@@ -12,7 +12,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.SuspectedKidPhoto;
 import form.SuspectedKidForm;
-import service.UserManager;
+import service.suspectedlostkid.SuspectedLostKidManager;
 
 public class ContactAction extends ActionSupport{
 
@@ -22,7 +22,7 @@ public class ContactAction extends ActionSupport{
 	private List<String> fileFileName;
 	private List<String> fileContentType;
 	private SuspectedKidForm suspectedKidForm;
-	private UserManager userManager;
+	private SuspectedLostKidManager suspectedLostKidManager;
 	private int resultMessage;
 	
 	public List<File> getFile() {
@@ -57,12 +57,12 @@ public class ContactAction extends ActionSupport{
 		this.suspectedKidForm = suspectedKidForm;
 	}
 	
-	public UserManager getUserManager() {
-		return userManager;
+	public SuspectedLostKidManager getsuspectedLostKidManager() {
+		return suspectedLostKidManager;
 	}
 	
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
+	public void setsuspectedLostKidManager(SuspectedLostKidManager suspectedLostKidManager) {
+		this.suspectedLostKidManager = suspectedLostKidManager;
 	}
 	
 	public int getResultMessage() {
@@ -104,7 +104,7 @@ public class ContactAction extends ActionSupport{
 			}
 			
 			suspectedKidForm.setPhotos(photos);
-			userManager.contact(suspectedKidForm);
+			suspectedLostKidManager.contact(suspectedKidForm);
 			setResultMessage(0);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -2,7 +2,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 
 import form.UserRegisterForm;
-import service.UserManager;
+import service.user.UserManager;
 
 public class RegisterAction extends ActionSupport {
 

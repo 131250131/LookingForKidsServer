@@ -3,7 +3,7 @@ package action;
 import com.opensymphony.xwork2.ActionSupport;
 
 import bean.User;
-import service.UserManager;
+import service.user.UserManager;
 
 public class GetInfoAction extends ActionSupport{
 	

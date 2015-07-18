@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import bean.Kid;
 import bean.KidPhoto;
-import service.UserManager;
+import service.lostkid.LostKidManager;
 
 public class FindKidsAction extends ActionSupport{
 
@@ -16,14 +16,14 @@ public class FindKidsAction extends ActionSupport{
 	private int kidID;
 	private List<KidPhoto> photosPath;
 	private List<Kid> kids;
-	private UserManager userManager;
+	private LostKidManager lostKidManager;
 
-	public UserManager getUserManager() {
-		return userManager;
+	public LostKidManager getLostKidManager() {
+		return lostKidManager;
 	}
 
-	public void setUserManager(UserManager userManager) {
-		this.userManager = userManager;
+	public void setLostKidManager(LostKidManager lostKidManager) {
+		this.lostKidManager = lostKidManager;
 	}
 
 	public List<Kid> getKids() {
@@ -52,12 +52,12 @@ public class FindKidsAction extends ActionSupport{
 
 	public String execute(){
 		try {
-			setKids(userManager.getKids(kidID));
+			setKids(lostKidManager.getKids(kidID));
 			List<Integer> kidsID = new LinkedList<Integer>();
 			for(int i=0;i<kids.size();i++){
 				kidsID.add(kids.get(i).getKidID());
 			}
-			setPhotosPath(userManager.getPhotos(kidsID));
+			setPhotosPath(lostKidManager.getPhotos(kidsID));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
