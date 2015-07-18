@@ -10,6 +10,7 @@ public class RegisterAction extends ActionSupport {
 	
 	private UserRegisterForm userRegisterForm;
 	private UserManager userManager;
+	private int resultMessage;
 
 	public UserRegisterForm getUserRegisterForm() {
 		return userRegisterForm;
@@ -29,11 +30,25 @@ public class RegisterAction extends ActionSupport {
 
 	public String execute() {
 		try {
-			userManager.register(userRegisterForm);
-			return SUCCESS;
+			if(userManager.getUserByEmail(userRegisterForm.getEmail()).size() != 0)
+				setResultMessage(1);
+			else {
+				userManager.register(userRegisterForm);
+				setResultMessage(0);
+			}
+		
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ERROR;
+			setResultMessage(2);
 		}
+		return SUCCESS;
+	}
+
+	public int getResultMessage() {
+		return resultMessage;
+	}
+
+	public void setResultMessage(int resultMessage) {
+		this.resultMessage = resultMessage;
 	}
 }

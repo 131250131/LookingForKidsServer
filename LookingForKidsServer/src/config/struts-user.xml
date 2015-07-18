@@ -8,9 +8,11 @@
     <constant name="struts.multipart.maxSize" value="1000000000" />
 	<package name="user" namespace="/user" extends="struts-default,json-default">
 		<action name="register" class="action.RegisterAction">
-			<result name="input">/user/register/register.jsp</result>
-			<result name="success">/user/register/success.jsp</result>
-			<result name="error">/user/register/fail.jsp</result>
+			<result name="success" type="json">
+			  <param name="includeProperties">
+			  resultMessage
+			  </param>
+			</result>
 		</action>
 		
 		<action name="login" class="action.LoginAction">
