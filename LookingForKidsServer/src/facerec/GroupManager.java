@@ -5,17 +5,12 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Map;
 
-import javax.activation.MailcapCommandMap;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.NamedNodeMap;
 
 import com.facepp.error.FaceppParseException;
 import com.facepp.http.HttpRequests;
 import com.facepp.http.PostParameters;
-
-import sun.net.www.content.image.gif;
 
 public class GroupManager {
 	private static GroupManager instance = null;
@@ -89,7 +84,6 @@ public class GroupManager {
 			httpRequests.personCreate(
 					new PostParameters().setPersonName(files.getName()));
 			
-			System.out.println(files.getAbsolutePath());
 			for(File imagePath:files.listFiles()){
 				//detect face
 				JSONObject result = httpRequests.detectionDetect(
