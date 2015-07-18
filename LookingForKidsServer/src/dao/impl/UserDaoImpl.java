@@ -4,8 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.json.JSONException;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+
+import com.facepp.error.FaceppParseException;
 
 import bean.Kid;
 import bean.KidPhoto;
@@ -13,6 +16,8 @@ import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
+import facerec.GroupManager;
+import facerec.RecognizitionController;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
@@ -32,6 +37,18 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 			kidPhoto.setKidID(kidID);
 			hibernateTemplate.save(kidPhoto);
 		}
+		String path = "./photo/"+kid.getKidID()+"/";
+		GroupManager gm = GroupManager.getInstance();
+		try {
+			gm.addSomePhoto(path);
+		} catch (FaceppParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@SuppressWarnings("unchecked")

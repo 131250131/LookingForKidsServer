@@ -18,7 +18,7 @@ import com.facepp.error.FaceppParseException;
 import com.facepp.http.HttpRequests;
 import com.facepp.http.PostParameters;
 
-public class RecognitionController {
+public class RecognizitionController {
 	//api key & secret
 	APIKeySecret apiKeySecretMap = new APIKeySecret();
 	HttpRequests httpRequests;
@@ -30,8 +30,8 @@ public class RecognitionController {
 	 * 
 	 * */
 	
-	private static  RecognitionController instance = null;
-	private RecognitionController(){
+	private static  RecognizitionController instance = null;
+	private RecognizitionController(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(KEY_SECRET_PATH)));
 			apiKeySecretMap =  (APIKeySecret)in.readObject();
@@ -41,9 +41,9 @@ public class RecognitionController {
 		}
 		length = apiKeySecretMap.getLength();
 	}
-	public static RecognitionController getInstacen(){
+	public static RecognizitionController getInstacen(){
 		if(instance == null){
-			instance = new RecognitionController();
+			instance = new RecognizitionController();
 		}
 		return instance;
 	}
@@ -170,7 +170,7 @@ public class RecognitionController {
 	}
 	
 	public static void main(String[] args){
-		RecognitionController rc = RecognitionController.getInstacen();
+		RecognizitionController rc = RecognizitionController.getInstacen();
 		long time = System.currentTimeMillis();
 		File imageFile = new File("./res/test/photo(13).jpg");
 		try {
