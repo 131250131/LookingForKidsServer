@@ -27,7 +27,10 @@ public class LostKidDaoImpl extends HibernateDaoSupport implements LostKidDao {
 			kidPhoto.setKidID(kidID);
 			hibernateTemplate.save(kidPhoto);
 		}
-		String path = "./photo/"+kid.getKidID()+"/";
+		KidPhoto kidPhoto = (KidPhoto) hibernateTemplate.findByNamedParam(
+				"from bean.KidPhoto k where kidID=:id", "id", kid.getKidID()).get(0);
+		String temp = kidPhoto.getPhotoPath().split("/")[2];
+		String path = "D:/ee_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LookingForKidsServer/"+temp;
 		GroupManager gm = GroupManager.getInstance();
 		try {
 			gm.addSomePhoto(path);
