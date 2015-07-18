@@ -22,11 +22,6 @@ import dao.suspectedlostkid.SuspectedLostKidDao;
 import facerec.RecognizitionController;
 
 public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements SuspectedLostKidDao {
-	String url="jdbc:mysql://localhost";
-	String user="root";
-	String password="hongmao";
-	String sql="";
-	
 	
 	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
 	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
