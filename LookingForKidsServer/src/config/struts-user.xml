@@ -20,5 +20,13 @@
 		       </param>
 			</result>
 		</action>
+		
+		<action name="getinfo" class="action.GetInfoAction">
+			<result name="success" type="json">
+		       <param name="excludeProperties">
+		       userID,userManager
+		       </param>
+			</result>
+		</action>
 	</package>
 </struts>

@@ -14,6 +14,7 @@ public interface UserDao {
 
 	public void register(User user) throws HibernateException;
 	public void publish(Kid kid) throws HibernateException;
+	public User getInfo(int userID) throws HibernateException;
 	public List<User> getUserByEmail(String email) throws HibernateException;
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException;
 	public void contact(SuspectedKid suspectedKid) throws HibernateException;
@@ -22,4 +23,5 @@ public interface UserDao {
 	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException;
 	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException;	
 	public int getKidID() throws HibernateException; 
+	
 }

@@ -76,4 +76,8 @@ public class UserManagerImpl implements UserManager {
 		return userDao.getKidID();
 	}
 
+	public User getInfo(int userID) throws HibernateException {
+		return userDao.getInfo(userID);
+	}
+
 }
