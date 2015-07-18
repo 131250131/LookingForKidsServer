@@ -4,8 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.json.JSONException;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+
+import com.facepp.error.FaceppParseException;
 
 import bean.Kid;
 import bean.KidPhoto;
@@ -13,6 +16,8 @@ import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
+import facerec.GroupManager;
+import facerec.RecognizitionController;
 
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
@@ -22,6 +27,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		hibernateTemplate.save(user);
 	}
 
+	//新添了一个走丢的小孩，需要把他的照片加到face++的服务器上
 	public void publish(Kid kid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
@@ -31,6 +37,18 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 			kidPhoto.setKidID(kidID);
 			hibernateTemplate.save(kidPhoto);
 		}
+		String path = "./photo/"+kid.getKidID()+"/";
+		GroupManager gm = GroupManager.getInstance();
+		try {
+			gm.addSomePhoto(path);
+		} catch (FaceppParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -48,6 +66,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	}
 
 
+	//这是随手拍发布的信息，需要调用匹配函数，返回一个map之后，需要给对应的用户推送
 	public void contact(SuspectedKid suspectedKid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
