@@ -101,7 +101,6 @@ public class DataBaseCreator {
 	
 	public void createSimilarityMap(){
 		try{
-			System.out.println("wtf");
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url,user,password);
 			Statement stmt = conn.createStatement();
