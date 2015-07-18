@@ -1,18 +1,26 @@
 package facerec;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.Map;
+
+import javax.activation.MailcapCommandMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.NamedNodeMap;
 
 import com.facepp.error.FaceppParseException;
 import com.facepp.http.HttpRequests;
 import com.facepp.http.PostParameters;
 
+import sun.net.www.content.image.gif;
+
 public class GroupManager {
 	private static GroupManager instance = null;
-	private static final String TRAIN_PATH = "/photo";
+	private static final String TRAIN_PATH = "D:/ee_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LookingForKidsServer/photo";
+	private static final String KEY_SECRET_PATH = "D:/doc/LookingForKidsServer/LookingForKidsServer/key.obj";
 	APIKeySecret apiKeySecretMap = null;
 	HttpRequests httpRequests =null;
 	int length = 0;
@@ -20,6 +28,13 @@ public class GroupManager {
 	
 	private GroupManager(){
 		this.apiKeySecretMap = new APIKeySecret();
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(KEY_SECRET_PATH)));
+			apiKeySecretMap =  (APIKeySecret)in.readObject();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.length = this.apiKeySecretMap.getLength();
 		
 	}
@@ -68,33 +83,49 @@ public class GroupManager {
 	public void addSomePhoto(String trainPath) throws FaceppParseException, JSONException{
 			Map<String, String> map = apiKeySecretMap.get();
 			httpRequests = new HttpRequests(map.get("key"), map.get("secret"));
-			File files = new File(TRAIN_PATH);
+			File files = new File(trainPath);
 
 			//create person
 			httpRequests.personCreate(
-					new PostParameters().setPersonName("person_"+count));
+					new PostParameters().setPersonName(files.getName()));
 			
+			System.out.println(files.getAbsolutePath());
 			for(File imagePath:files.listFiles()){
 				//detect face
 				JSONObject result = httpRequests.detectionDetect(
 						new PostParameters().setImg(imagePath));
 				for (int i = 0; i < result.getJSONArray("face").length(); ++i) {				
 					//add face
-					httpRequests.personAddFace(new PostParameters().setPersonName("person_" + count).setFaceId(
+					httpRequests.personAddFace(new PostParameters().setPersonName(files.getName()).setFaceId(
 							result.getJSONArray("face").getJSONObject(i).getString("face_id")));
 				}
 				
 			}
 			
-			//set person info
-			httpRequests.personSetInfo(new PostParameters().setPersonName(
-					"person_" + count).setTag(files.getName().split("\\.")[0]));
-			
 			//add person
 			httpRequests.groupAddPerson(
-					new PostParameters().setGroupName("group").setPersonName("person_" + count));
+					new PostParameters().setGroupName("group").setPersonName(files.getName()));
 			
 			this.count++;
+	}
+
+	//已找回儿童的数据从训练队列中删除
+	public void deleteSomePhot0(){
+		
+	}
+	
+	public static void main(String[] args){
+		GroupManager manager = GroupManager.getInstance();
+		String trainPath =  "D:/ee_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LookingForKidsServer/photo/3";
+		try {
+			manager.addSomePhoto(trainPath);
+		} catch (FaceppParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
