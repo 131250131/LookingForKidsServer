@@ -6,6 +6,8 @@ import org.hibernate.HibernateException;
 
 import bean.Kid;
 import bean.KidPhoto;
+import bean.SuspectedKid;
+import bean.SuspectedKidPhoto;
 import bean.User;
 import form.KidPublishForm;
 import form.SuspectedKidForm;
@@ -20,4 +22,6 @@ public interface UserManager {
 	public void contact(SuspectedKidForm suspectedKidForm) throws HibernateException;
 	public List<Kid> getKids(int kidID) throws HibernateException;
 	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException;
+	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException;
+	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException;
 }

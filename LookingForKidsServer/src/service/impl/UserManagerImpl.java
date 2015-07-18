@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import bean.Kid;
 import bean.KidPhoto;
 import bean.SuspectedKid;
+import bean.SuspectedKidPhoto;
 import bean.User;
 import dao.UserDao;
 import form.KidPublishForm;
@@ -61,6 +62,14 @@ public class UserManagerImpl implements UserManager {
 
 	public List<KidPhoto> getPhotos(List<Integer> kidsID) throws HibernateException {
 		return userDao.getPhotos(kidsID);
+	}
+
+	public List<SuspectedKid> getSuspectedKids(int kidID) throws HibernateException {
+		return userDao.getSuspectedKids(kidID);
+	}
+
+	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException {
+		return userDao.getSuspectedPhotos(kidsID);
 	}
 
 }

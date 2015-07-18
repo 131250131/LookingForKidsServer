@@ -104,7 +104,14 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 </bean>
 
 <!-- 查看发布信息的Action -->
-<bean id="find" class="action.FindAction">
+<bean id="find" class="action.FindKidsAction">
+	<property name="userManager">
+		<ref bean="userManager" />
+	</property>
+</bean>
+
+<!-- 查看发布信息的Action -->
+<bean id="lookover" class="action.FindSuspectedKidsAction">
 	<property name="userManager">
 		<ref bean="userManager" />
 	</property>
