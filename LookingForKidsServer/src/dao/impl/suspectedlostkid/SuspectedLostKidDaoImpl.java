@@ -46,7 +46,7 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 						record.setSuspectedkidID(kidID);
 						record.setSimilarity((int)(double)mapping.getValue());
 						hibernateTemplate.setCheckWriteOperations(false);
-						
+						hibernateTemplate.save(record);
 					}
 					
 				} catch (FaceppParseException e) {
