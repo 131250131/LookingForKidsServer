@@ -22,6 +22,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		hibernateTemplate.save(user);
 	}
 
+	//新添了一个走丢的小孩，需要把他的照片加到face++的服务器上
 	public void publish(Kid kid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
@@ -48,6 +49,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	}
 
 
+	//这是随手拍发布的信息，需要调用匹配函数，返回一个map之后，需要给对应的用户推送
 	public void contact(SuspectedKid suspectedKid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);

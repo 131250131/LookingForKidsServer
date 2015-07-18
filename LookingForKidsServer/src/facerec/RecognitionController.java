@@ -25,6 +25,11 @@ public class RecognitionController {
 	int length ;
 	private static final String KEY_SECRET_PATH = "./key.obj";
 	
+	/*
+	 * 需要改进的？
+	 * 
+	 * */
+	
 	private static  RecognitionController instance = null;
 	private RecognitionController(){
 		try {
