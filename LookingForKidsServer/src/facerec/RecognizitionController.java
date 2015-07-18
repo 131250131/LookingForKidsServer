@@ -48,13 +48,13 @@ public class RecognizitionController {
 		return instance;
 	}
 		
-	public Map<String,Double> recognizeOneImage(File imageFile) throws FaceppParseException, JSONException, InterruptedException{
+	public ArrayList<Entry<String, Double>> recognizeOneImage(File imageFile) throws FaceppParseException, JSONException, InterruptedException{
 		
 		JSONObject result;
 		JSONArray[] personsList = new JSONArray[length];
 		
 		//
-		Map<String, String> personNameToTag = new HashMap<String, String>();
+
 		for (int i = 0; i < length; i++) {
 			Map<String, String> map = apiKeySecretMap.get();
 			httpRequests = new HttpRequests(map.get("key"), map.get("secret"));
@@ -64,7 +64,7 @@ public class RecognizitionController {
 			for (int j = 0; j < persons.length(); j++) {
 				String personName = persons.getJSONObject(j).getString("person_name");
 				result = httpRequests.personGetInfo(new PostParameters().setPersonName(personName));
-				personNameToTag.put(personName, result.getString("tag"));
+//				personNameToTag.put(personName, result.getString("tag"));
 			}
 		}
 		
@@ -90,14 +90,11 @@ public class RecognizitionController {
 				return o2.getValue().compareTo(o1.getValue());
 			}
 		});
-		Map<String,Double> recResult = new HashMap<String,Double>(); 
 		for(Map.Entry<String,Double> mapping : mappingList){
-			System.out.print(personNameToTag.get(mapping.getKey())+":"+mapping.getValue()+"\t");
-			recResult.put(personNameToTag.get(mapping.getKey()), mapping.getValue());
-		}
+			System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
 		
-		System.out.println();
-		return recResult;
+		}
+		return mappingList;
 		
 	}
 	

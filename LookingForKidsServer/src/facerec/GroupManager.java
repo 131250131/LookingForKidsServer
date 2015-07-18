@@ -41,7 +41,7 @@ public class GroupManager {
 			httpRequests = new HttpRequests(map.get("key"), map.get("secret"));
 			//create person
 			httpRequests.personCreate(
-					new PostParameters().setPersonName("person_"+count));
+					new PostParameters().setPersonName(imageFile.getName()));
 			
 			for(File imagePath:imageFile.listFiles()){
 				//detect face
@@ -49,19 +49,14 @@ public class GroupManager {
 						new PostParameters().setImg(imagePath));
 				for (int i = 0; i < result.getJSONArray("face").length(); ++i) {				
 					//add face
-					httpRequests.personAddFace(new PostParameters().setPersonName("person_" + count).setFaceId(
+					httpRequests.personAddFace(new PostParameters().setPersonName(imageFile.getName()).setFaceId(
 							result.getJSONArray("face").getJSONObject(i).getString("face_id")));
 				}
-				
 			}
-			
-			//set person info
-			httpRequests.personSetInfo(new PostParameters().setPersonName(
-					"person_" + count).setTag(imageFile.getName().split("\\.")[0]));
 			
 			//add person
 			httpRequests.groupAddPerson(
-					new PostParameters().setGroupName("group").setPersonName("person_" + count));
+					new PostParameters().setGroupName("group").setPersonName(imageFile.getName()));
 			
 			this.count++;
 			
