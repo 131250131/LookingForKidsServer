@@ -46,6 +46,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 			<value>bean/KidPhoto.hbm.xml</value>
 			<value>bean/SuspectedKid.hbm.xml</value>
 			<value>bean/SuspectedKidPhoto.hbm.xml</value>
+			<value>bean/SimilarityRecord.hbm.xml</value>
 		</list>
 	</property>
 	<property name="hibernateProperties">

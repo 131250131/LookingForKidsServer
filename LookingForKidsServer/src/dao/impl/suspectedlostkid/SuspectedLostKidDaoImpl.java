@@ -29,8 +29,8 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	String sql="";
 	
 	
-	//���������ķ�������Ϣ����Ҫ����ƥ�亯���һ��map֮����Ҫ���Ӧ���û�����
-	//���������ķ�������Ϣ����Ҫ����ƥ�亯���һ��map֮����Ҫ���Ӧ���û�����
+	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
+	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
 		public void contact(SuspectedKid suspectedKid) throws HibernateException {
 			HibernateTemplate hibernateTemplate = getHibernateTemplate();
 			hibernateTemplate.setCheckWriteOperations(false);
@@ -48,7 +48,7 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 					sql = "use LookingForKidsDB;";
 					stmt.execute(sql);		
 					ArrayList<Entry<String, Double>> tempMap = rc.recognizeOneImage(fileImage);
-					//��ʶ��ƥ��Ľ������ݿ�
+					//锟斤拷识锟斤拷匹锟斤拷慕锟斤拷锟斤拷锟斤拷菘锟�
 					for(Map.Entry<String,Double> mapping : tempMap){
 						System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
 						sql = "INSERT INTO SimilarityMap(userID,MBKidID,similarity) "
@@ -110,8 +110,7 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	public List<SimilarityRecord> getSimilarityRecords(int userID) throws HibernateException {
 		System.out.println(userID);
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
-		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord k where k.userID=:id order by k.similarity desc",
-				                                  "id", userID);
+		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord s where s.userID=:id order by s.similarity desc", "id", userID);
 		
 	}
 

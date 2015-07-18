@@ -5,7 +5,7 @@
 	<class name="bean.SimilarityRecord" table="SimilarityMap" catalog="lookingforkidsdb">
 		<composite-id>
 			<key-property column="userID" name="userID" type="integer" length="11" />
-			<key-property column="MBKidID" name="suspectedkidID" type="" length="11" />
+			<key-property column="MBKidID" name="suspectedkidID" type="integer" length="11" />
 		</composite-id> 
 		<property name ="similarity" column="similarity" type="integer"/>
 	</class>
