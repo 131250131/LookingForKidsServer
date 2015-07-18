@@ -1,7 +1,9 @@
 package dao.impl;
 
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.json.JSONException;
@@ -28,6 +30,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	}
 
 	//新添了一个走丢的小孩，需要把他的照片加到face++的服务器上
+	//时间 2015年7月18日 11:36:45 by 阿超
 	public void publish(Kid kid) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		hibernateTemplate.setCheckWriteOperations(false);
@@ -42,10 +45,8 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		try {
 			gm.addSomePhoto(path);
 		} catch (FaceppParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -72,9 +73,26 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		hibernateTemplate.setCheckWriteOperations(false);
 		hibernateTemplate.save(suspectedKid);
 		int kidID = suspectedKid.getKidID();
+		RecognizitionController rc = RecognizitionController.getInstacen();
 		for(SuspectedKidPhoto suspectedKidPhoto : suspectedKid.getPhotos()){
 			suspectedKidPhoto.setKidID(kidID);
 			hibernateTemplate.save(suspectedKidPhoto);
+			File fileImage = new File(suspectedKidPhoto.getPhotoPath());
+			try {
+				Map<String,Double> tempMap = rc.recognizeOneImage(fileImage);
+				//这边把结果传进去
+				
+				
+				
+				
+				
+			} catch (FaceppParseException e) {
+				e.printStackTrace();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
