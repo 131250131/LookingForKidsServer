@@ -50,7 +50,7 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 					//把识别匹配的结果传入数据库
 					for(Map.Entry<String,Double> mapping : tempMap){
 						System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
-						sql = "INSERT INTO SimilarityMap(userID,MBKidIDsimilarity) "
+						sql = "INSERT INTO SimilarityMap(userID,MBKidID,similarity) "
 								+ "VALUES("+mapping.getKey()+", "+kidID+", "+mapping.getValue()+");";
 						stmt.execute(sql);
 					}

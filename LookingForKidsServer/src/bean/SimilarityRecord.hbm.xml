@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="bean.SimilarityRecord" table="SimilarityMap" catalog="lookingforkidsdb">
+		<composite-id>
+			<key-property column="userID" name="userID" type="integer" length="11" />
+			<key-property column="MBKidID" name="suspectedkidID" type="" length="11" />
+		</composite-id> 
+		<property name ="Similarity" column="similarity" type="integer"/>
+	</class>
+</hibernate-mapping>

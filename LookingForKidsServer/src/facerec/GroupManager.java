@@ -12,7 +12,7 @@ import com.facepp.http.PostParameters;
 
 public class GroupManager {
 	private static GroupManager instance = null;
-	private static final String TRAIN_PATH = "./res/train/";
+	private static final String TRAIN_PATH = "/photo";
 	APIKeySecret apiKeySecretMap = null;
 	HttpRequests httpRequests =null;
 	int length = 0;
@@ -101,6 +101,5 @@ public class GroupManager {
 	public void deleteSomePhot0(){
 		
 	}
-	
 	
 }
