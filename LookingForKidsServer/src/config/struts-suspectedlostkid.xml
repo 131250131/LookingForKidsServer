@@ -32,5 +32,15 @@
 		       </param>
 			</result>
 		</action>
+		
+		<action name="findsimilarkids" class="action.FindSimilarKidsAction">
+			<result name="success" type="json">
+		       <param name="excludeProperties">
+		       		kidID,suspectedLostKidManager
+		       </param>
+			</result>
+		</action>
+		
+		
 	</package>
 </struts>

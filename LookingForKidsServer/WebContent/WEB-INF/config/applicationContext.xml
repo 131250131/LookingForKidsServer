@@ -148,5 +148,12 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 		<ref bean="suspectedLostKidManager" />
 	</property>
 </bean>
+
+<!--  查看相似说说的Action -->
+<bean id="findsimilarkids" class="action.FindSimilarKidsAction">
+	<property name="suspectedLostKidManager">
+		<ref bean="suspectedLostKidManager" />
+	</property>
+</bean>
 <!-- more bean definitions go here -->
 </beans>

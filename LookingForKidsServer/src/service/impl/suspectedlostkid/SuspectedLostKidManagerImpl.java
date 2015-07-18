@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.HibernateException;
 import org.springframework.beans.BeanUtils;
 
+import bean.SimilarityRecord;
 import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
 import dao.suspectedlostkid.SuspectedLostKidDao;
@@ -35,6 +36,14 @@ public class SuspectedLostKidManagerImpl implements SuspectedLostKidManager {
 
 	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException {
 		return suspectedLostKidDao.getSuspectedPhotos(kidsID);
+	}
+	
+	public List<SimilarityRecord> getSimilarityRecords(int userID) throws HibernateException {
+		return suspectedLostKidDao.getSimilarityRecords(userID);
+	}
+	
+	public List<SuspectedKid> getSuspectedKidsByID(List<Integer> kidsID) throws HibernateException {
+		return suspectedLostKidDao.getSuspectedKidsByID(kidsID);
 	}
 
 }
