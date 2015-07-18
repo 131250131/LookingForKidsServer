@@ -102,7 +102,7 @@ public class GroupManager {
 			
 			this.count++;
 	}
-	
+
 	//已找回儿童的数据从训练队列中删除
 	public void deleteSomePhot0(){
 		
