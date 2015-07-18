@@ -7,7 +7,7 @@ public class SimilarityRecord implements Serializable{
 	private static final long serialVersionUID = 7930150516977445330L;
 	private int userID;
 	private int suspectedkidID;
-	private int Similarity;
+	private int similarity;
 	public int getUserID() {
 		return userID;
 	}
@@ -21,10 +21,10 @@ public class SimilarityRecord implements Serializable{
 		this.suspectedkidID = suspectedkidID;
 	}
 	public int getSimilarity() {
-		return Similarity;
+		return similarity;
 	}
 	public void setSimilarity(int similarity) {
-		Similarity = similarity;
+		this.similarity = similarity;
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;

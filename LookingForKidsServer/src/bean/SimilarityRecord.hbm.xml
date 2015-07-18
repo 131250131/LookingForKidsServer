@@ -7,6 +7,6 @@
 			<key-property column="userID" name="userID" type="integer" length="11" />
 			<key-property column="MBKidID" name="suspectedkidID" type="" length="11" />
 		</composite-id> 
-		<property name ="Similarity" column="similarity" type="integer"/>
+		<property name ="similarity" column="similarity" type="integer"/>
 	</class>
 </hibernate-mapping>

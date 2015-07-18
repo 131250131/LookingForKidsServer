@@ -108,9 +108,10 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	
 	@SuppressWarnings("unchecked")
 	public List<SimilarityRecord> getSimilarityRecords(int userID) throws HibernateException {
+		System.out.println(userID);
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
-		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord k where k.userID:=userID order by k.similarity desc",
-				                                  "userID", userID);
+		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord k where k.userID=:id order by k.similarity desc",
+				                                  "id", userID);
 		
 	}
 
