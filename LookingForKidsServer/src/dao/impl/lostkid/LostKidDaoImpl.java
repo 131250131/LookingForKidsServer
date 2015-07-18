@@ -75,6 +75,9 @@ public class LostKidDaoImpl extends HibernateDaoSupport implements LostKidDao {
 	@SuppressWarnings("unchecked")
 	public int getKidID() throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		if(((List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc")).size() == 0){
+			return 0;
+		}
 		return ((List<Kid>)hibernateTemplate.find("from bean.Kid k order by k.kidID desc")).get(0).getKidID();
 	}
 

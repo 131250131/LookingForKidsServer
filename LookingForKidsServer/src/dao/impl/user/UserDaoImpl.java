@@ -21,14 +21,14 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	@Override
 	public List<User> getUserByEmail(String email) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
-		return (List<User>)hibernateTemplate.find("from bean.User u where u.email=?", email);
+		return (List<User>)hibernateTemplate.findByNamedParam("from bean.User u where u.email=:email", "email", email);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> getUserByPhoneNumber(String phoneNumber) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
-		return (List<User>)hibernateTemplate.find("from bean.User u where u.phonenumber=?", phoneNumber);
+		return (List<User>)hibernateTemplate.findByNamedParam("from bean.User u where u.phonenumber=:phoneNumber", "phoneNumber", phoneNumber);
 	}
 
 	@SuppressWarnings("unchecked")

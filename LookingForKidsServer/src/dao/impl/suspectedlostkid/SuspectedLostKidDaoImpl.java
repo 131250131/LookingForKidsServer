@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 
 import com.facepp.error.FaceppParseException;
 
+import bean.SimilarityRecord;
 import bean.SuspectedKid;
 import bean.SuspectedKidPhoto;
 import dao.suspectedlostkid.SuspectedLostKidDao;
@@ -28,8 +29,8 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	String sql="";
 	
 	
-	//ÕâÊÇËæÊÖÅÄ·¢²¼µÄÐÅÏ¢£¬ÐèÒªµ÷ÓÃÆ¥Åäº¯Êý£¬·µ»ØÒ»¸ömapÖ®ºó£¬ÐèÒª¸ø¶ÔÓ¦µÄÓÃ»§ÍÆËÍ
-	//ÕâÊÇËæÊÖÅÄ·¢²¼µÄÐÅÏ¢£¬ÐèÒªµ÷ÓÃÆ¥Åäº¯Êý£¬·µ»ØÒ»¸ömapÖ®ºó£¬ÐèÒª¸ø¶ÔÓ¦µÄÓÃ»§ÍÆËÍ
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Æ¥ï¿½äº¯ï¿½ï¿½ï¿½Ò»ï¿½ï¿½mapÖ®ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Æ¥ï¿½äº¯ï¿½ï¿½ï¿½Ò»ï¿½ï¿½mapÖ®ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 		public void contact(SuspectedKid suspectedKid) throws HibernateException {
 			HibernateTemplate hibernateTemplate = getHibernateTemplate();
 			hibernateTemplate.setCheckWriteOperations(false);
@@ -47,7 +48,7 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 					sql = "use LookingForKidsDB;";
 					stmt.execute(sql);		
 					ArrayList<Entry<String, Double>> tempMap = rc.recognizeOneImage(fileImage);
-					//°ÑÊ¶±ðÆ¥ÅäµÄ½á¹û´«ÈëÊý¾Ý¿â
+					//ï¿½ï¿½Ê¶ï¿½ï¿½Æ¥ï¿½ï¿½Ä½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
 					for(Map.Entry<String,Double> mapping : tempMap){
 						System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
 						sql = "INSERT INTO SimilarityMap(userID,MBKidID,similarity) "
@@ -82,6 +83,17 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<SuspectedKid> getSuspectedKidsByID(List<Integer> kidsID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		List<SuspectedKid> kidsList = new LinkedList<SuspectedKid>();
+		String queryString = "from bean.SuspectedKid k where k.kidID=:id";
+	    String paramName = "id";
+		for(Integer loopID: kidsID) 
+		    kidsList.addAll((List<SuspectedKid>)hibernateTemplate.findByNamedParam(queryString, paramName, loopID));
+		return kidsList;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<SuspectedKidPhoto> getSuspectedPhotos(List<Integer> kidsID) throws HibernateException {
 		HibernateTemplate hibernateTemplate = getHibernateTemplate();
 		List<SuspectedKidPhoto> photos = new LinkedList<SuspectedKidPhoto>();
@@ -92,6 +104,14 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 			photos.addAll((List<SuspectedKidPhoto>)hibernateTemplate.findByNamedParam(queryString, paramName, value));
 		}
 		return photos;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SimilarityRecord> getSimilarityRecords(int userID) throws HibernateException {
+		HibernateTemplate hibernateTemplate = getHibernateTemplate();
+		return (List<SimilarityRecord>) hibernateTemplate.findByNamedParam("from bean.SimilarityRecord k where k.userID:=userID order by k.similarity desc",
+				                                  "userID", userID);
+		
 	}
 
 }
