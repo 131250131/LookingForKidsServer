@@ -58,8 +58,9 @@ public class FindSimilarKidsAction extends ActionSupport{
 		List<SimilarityRecord> kidsRecords = suspectedLostKidManager.getSimilarityRecords(userID);
 		
 		List<Integer> kidsList = new LinkedList<Integer>();
-		for(SimilarityRecord loopRecord: kidsRecords)
-			kidsList.add(loopRecord.getSimilarity());
+		for(SimilarityRecord loopRecord: kidsRecords) {
+			kidsList.add(loopRecord.getSuspectedkidID());
+		}
 		setKids(suspectedLostKidManager.getSuspectedKidsByID(kidsList));
 		
 		List<Integer> kidsID = new LinkedList<Integer>();

@@ -108,10 +108,10 @@ public class DataBaseCreator {
 			stmt.execute(sql);		
 			sql = ""
 				+ "create table SimilarityMap("
+				+ "recordID int auto_increment primary key,"
 				+ "userID int not null,"
 				+ "MBKidID int not null,"
-				+ "similarity int not null,"
-				+ "primary key (userID,MBKidID)"
+				+ "similarity int not null"
 				+ ")"
 				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);

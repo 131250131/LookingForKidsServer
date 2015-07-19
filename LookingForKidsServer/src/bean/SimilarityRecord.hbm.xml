@@ -3,10 +3,11 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="bean.SimilarityRecord" table="SimilarityMap" catalog="lookingforkidsdb">
-		<composite-id>
-			<key-property column="userID" name="userID" type="integer" length="11" />
-			<key-property column="MBKidID" name="suspectedkidID" type="integer" length="11" />
-		</composite-id> 
+		<id column="recordID" name="recordID" type="integer" length="11">
+			<generator class="identity"/>
+		</id> 
+		<property column="userID" name="userID" type="integer" length="11" />
+		<property column="MBKidID" name="suspectedkidID" type="integer" length="11" />
 		<property name ="similarity" column="similarity" type="integer"/>
 	</class>
 </hibernate-mapping>
