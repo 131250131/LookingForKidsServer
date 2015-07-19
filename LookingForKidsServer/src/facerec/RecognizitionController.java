@@ -23,7 +23,7 @@ public class RecognizitionController {
 	APIKeySecret apiKeySecretMap = new APIKeySecret();
 	HttpRequests httpRequests;
 	int length ;
-	private static final String KEY_SECRET_PATH = "./key.obj";
+	private static final String KEY_SECRET_PATH = "D:/doc/LookingForKidsServer/LookingForKidsServer/key.obj";
 	
 	/*
 	 * 需要改进的？
@@ -68,7 +68,7 @@ public class RecognizitionController {
 			}
 		}
 		
-		System.out.println(imageFile.getName());
+		System.out.println(imageFile.getAbsolutePath());
 		
 		Map<String, Double> personNameToSimilarity = new HashMap<String, Double>();
 		Thread[] threads = new Thread[length];
@@ -87,7 +87,7 @@ public class RecognizitionController {
 		mappingList = new ArrayList<Map.Entry<String, Double>>(personNameToSimilarity.entrySet());
 		Collections.sort(mappingList, new Comparator<Map.Entry<String, Double>>() {
 			public int compare(Entry<String, Double> o1, Entry<String, Double> o2) {
-				return o2.getValue().compareTo(o1.getValue());
+				return o1.getValue().compareTo(o2.getValue());
 			}
 		});
 		for(Map.Entry<String,Double> mapping : mappingList){

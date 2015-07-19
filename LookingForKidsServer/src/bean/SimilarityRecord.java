@@ -26,9 +26,6 @@ public class SimilarityRecord implements Serializable{
 	public void setSimilarity(int similarity) {
 		this.similarity = similarity;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	
 	
 }

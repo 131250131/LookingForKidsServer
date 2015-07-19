@@ -1,6 +1,9 @@
 package dao.impl.suspectedlostkid;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +25,10 @@ import dao.suspectedlostkid.SuspectedLostKidDao;
 import facerec.RecognizitionController;
 
 public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements SuspectedLostKidDao {
+	String url="jdbc:mysql://localhost";
+	String user="root";
+	String password="hongmao";
+	String sql="";
 	
 	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
 	//锟斤拷锟斤拷锟斤拷锟斤拷锟侥凤拷锟斤拷锟斤拷锟斤拷息锟斤拷锟斤拷要锟斤拷锟斤拷匹锟戒函锟斤拷锟揭伙拷锟絤ap之锟斤拷锟斤拷要锟斤拷锟接︼拷锟斤拷没锟斤拷锟斤拷锟�
@@ -34,10 +41,13 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 			for(SuspectedKidPhoto suspectedKidPhoto : suspectedKid.getPhotos()){
 				suspectedKidPhoto.setKidID(kidID);
 				hibernateTemplate.save(suspectedKidPhoto);
-				File fileImage = new File(suspectedKidPhoto.getPhotoPath());
+				String path = "D:/ee_workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LookingForKidsServer/" + suspectedKidPhoto.getPhotoPath();
+				File filesimage = new File(path);
+				
 				ArrayList<Entry<String, Double>> tempMap;
 				try {
-					tempMap = rc.recognizeOneImage(fileImage);
+					
+					tempMap = rc.recognizeOneImage(filesimage);
 					for(Map.Entry<String,Double> mapping : tempMap){
 						System.out.print(mapping.getKey()+":"+mapping.getValue()+"\t");
 						SimilarityRecord record = new SimilarityRecord();
@@ -45,8 +55,27 @@ public class SuspectedLostKidDaoImpl extends HibernateDaoSupport implements Susp
 						record.setUserID(kid.getUserID());
 						record.setSuspectedkidID(kidID);
 						record.setSimilarity((int)(double)mapping.getValue());
-						hibernateTemplate.setCheckWriteOperations(false);
-						hibernateTemplate.save(record);
+						System.out.println("user"+record.getUserID()+"kid"+record.getSuspectedkidID()+"sim"+record.getSimilarity());
+						hibernateTemplate.persist(record);
+						try {
+							Class.forName("com.mysql.jdbc.Driver");
+							Connection conn = DriverManager.getConnection(url,user,password);
+							Statement stmt = conn.createStatement();
+							sql = "use LookingForKidsDB;";
+							stmt.execute(sql);		
+							sql = ""
+								+ "insert into SimilarityMap(userID,MBKidID,similarity)"
+								+ "values("+kid.getUserID()+", "+kidID+", "+(int)(double)mapping.getValue()+")"
+								;
+							stmt.execute(sql);
+							stmt.close();
+							conn.close();
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+						}
+						
+						
 					}
 					
 				} catch (FaceppParseException e) {

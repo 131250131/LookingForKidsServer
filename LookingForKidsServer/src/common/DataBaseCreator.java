@@ -12,7 +12,7 @@ public class DataBaseCreator {
 	
 	public static void main(String args[]){
 		DataBaseCreator creator = new DataBaseCreator();
-		creator.createLookingForKidsDB();
+		//creator.createLookingForKidsDB();
 		creator.createSimilarityMap();
 	}
 	
@@ -110,7 +110,8 @@ public class DataBaseCreator {
 				+ "create table SimilarityMap("
 				+ "userID int not null,"
 				+ "MBKidID int not null,"
-				+ "similarity int not null"
+				+ "similarity int not null,"
+				+ "primary key (userID,MBKidID)"
 				+ ")"
 				+ "DEFAULT CHARSET=utf8";
 			stmt.execute(sql);
